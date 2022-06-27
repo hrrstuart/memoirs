@@ -1,0 +1,5 @@
+# Memoirs
+
+An app dedicated to being able to share photos, with your friends, after a specific night. Instead of sending only the best picture or video, you can upload them all to this thing. You can also use this app, if you want to collect a large amount of images from a number of people. An example of this could be, if you wanted to surprise someone for their birthday with a bunch of picures of themselves. It could also be used by large event-holders so that they can see what the crowd saw on the night.
+
+How it works is, you create a new collection, and this is where all the images for a specific event will be uploaded. You can add members to the group so that they have control over the collection aswell (admins). Otherwise, people just need the code/colletion ID and with this, they can upload. Unless it is a private collection, in which there will be a required password.
