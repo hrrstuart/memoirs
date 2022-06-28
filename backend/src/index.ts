@@ -1,11 +1,5 @@
-import express from "express";
+import app from "./server";
 
-const server = express();
-
-server.get("/hello", (req, res) => {
-    res.send('Hello World!');
-});
-
-server.listen(8080, () => {
+app.listen(8080, () => {
     console.log('Listening at port 8080');
 });
