@@ -1,15 +1,15 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Header from '../components/Header'
+import Router from 'next/router'
+import { useEffect } from 'react'
 
 const Home: NextPage = () => {
+  useEffect(() => {
+    Router.push("/home")
+  }, []);
+
   return (
     <div>
-      <Head>
-        <title>Atorus</title>
-        <meta name="description" content="Bring you and your friends' photos together." />
-      </Head>
-      <Header />
+
     </div>
   )
 }
