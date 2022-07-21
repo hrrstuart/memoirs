@@ -19,6 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </div>
         </main>
+        <div id="portal"></div>
       </div>
     </>
   );
