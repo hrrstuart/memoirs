@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
+import Photos from '../../components/profile/Photos';
 
 function UserDescription({ userInfo }: { userInfo: any }) {
   return (
@@ -18,7 +19,7 @@ function UserDescription({ userInfo }: { userInfo: any }) {
           <div><strong>{userInfo.following}</strong> Following</div>
           <div><strong>{userInfo.albums}</strong> Albums</div>
         </div>
-        <section className="inline-block max-w-md">{userInfo.description}</section>
+        <section className="inline-block break-words">{userInfo.description}</section>
       </div>
     </div>
   )
@@ -30,14 +31,14 @@ function User() {
     username: router.query.username,
     realName: "Harry Stuart",
     pfp: "https://media.gettyimages.com/photos/picture-taken-07-october-2004-shows-google-founders-sergey-brin-and-picture-id76737519?s=2048x2048",
-    description: "This is all about war, mate and if you even happen to believe otherwise, loike, I'll loike fucking shoot ye loike",
+    description: "This is all about war, mate and if you even happen to believe otherwise, loike, loike fucking shoot ye loike",
     followers: 910,
     following: 20,
     albums: 20
   }
 
   return (
-    <div className='w-full h-full text-white'>
+    <div className='w-full h-full text-white max-w-2xl'>
       <UserDescription userInfo={userInfo} />
       <div className="flex flex-row mt-5 border-t">
         <nav className='flex flex-row mx-auto justify-between w-full pt-2'>
@@ -47,7 +48,7 @@ function User() {
         </nav>
       </div>
       <div>
-        {/* Posts */}
+        <Photos />
       </div>
     </div>
   )
