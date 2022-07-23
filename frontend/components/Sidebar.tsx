@@ -11,7 +11,7 @@ const Sidebar: NextPage = () => {
     const bold = path[0] === page.toLowerCase();
 
     return (
-      <a href={page.toLowerCase()} className="flex items-center p-2 text-white hover:text-gray-300 bg-contain rounded-2xl hover:bg-gray-700">
+      <a href={`/${page.toLowerCase()}`} className="flex items-center p-2 text-white hover:text-gray-300 bg-contain rounded-2xl hover:bg-gray-700">
         <span className={`ml-3 ${bold && "font-bold"}`}>{page}</span>
       </a>
     )
