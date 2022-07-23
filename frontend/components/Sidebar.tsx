@@ -3,16 +3,16 @@ import { useRouter } from 'next/router';
 import { useState } from 'react'
 
 const Sidebar: NextPage = () => {
-  const [pages, setPages] = useState<string[]>(["Home", "Explore", "Notifications", "Map", "Profile"]);
+  const [pages, setPages] = useState<string[]>(["home", "explore", "notifications", "map", "profile"]);
 
   const Page = ({ page }: { page: string }) => {
     const router = useRouter();
     const path = router.pathname.split('/').filter(Boolean);
-    const bold = path[0] === page.toLowerCase();
+    const bold = path[0] === page;
 
     return (
-      <a href={`/${page.toLowerCase()}`} className="flex items-center p-2 text-white hover:text-gray-300 bg-contain rounded-2xl hover:bg-gray-700">
-        <span className={`ml-3 ${bold && "font-bold"}`}>{page}</span>
+      <a href={"/" + page} className="flex items-center p-2 text-white hover:text-gray-300 bg-contain rounded-2xl hover:bg-gray-700 duration-75">
+        <span className={`ml-3 ${bold && "font-bold"} capitalize`}>{page}</span>
       </a>
     )
   }
