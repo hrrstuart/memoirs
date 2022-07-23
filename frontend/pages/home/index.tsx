@@ -9,6 +9,8 @@ function Home() {
 
   const setModal = (post: IPost) => {
     setCurrentPost(post);
+
+    document.body.classList.add("overflow-hidden")
     setShowModal(true);
   }
 
@@ -23,7 +25,7 @@ function Home() {
                 <Post setModal={setModal} post={{ caption: "Live, love, laugh", image: "https://media.gettyimages.com/photos/group-of-young-people-having-water-fight-in-field-laughing-picture-id200250724-002", likes: 13812, owner: "hrrstuart" }} />
             </ul>
         </div>
-        <Modal open={showModal} onClose={() => setShowModal(false)}>
+        <Modal open={showModal} onClose={() => { document.body.classList.remove("overflow-hidden"); setShowModal(false) }}>
           <div style={{ transform: 'translate(-50%, -50%)', zIndex: 1000 }} className="fixed top-1/2 left-1/2 bg-[#000000] h-[90%] w-[80%] overflow-y-scroll xl:overflow-y-hidden text-white">
             {
               currentPost ?
