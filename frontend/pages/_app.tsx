@@ -11,11 +11,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="description" content="Bring you and your friends' photos together." />
       </Head>
       <div className='bg-[#111111] flex flex-col min-h-screen'>
-        <main className='flex flex-grow flex-row mx-auto'>
-          <div className='h-screen sticky top-0 hidden md:block'>
+        <main className='flex flex-grow flex-row'>
+          <div className='h-screen sticky top-0 hidden md:block lg:ml-32'>
             <Sidebar />
           </div>
-          <div className='w-full p-5'>
+          <div className='mx-auto p-5'>
             <Component {...pageProps} />
           </div>
         </main>
