@@ -28,8 +28,8 @@ function Home() {
             {
               currentPost ?
                   <div className="flex flex-col xl:flex-row h-full">
-                    <div className="mx-auto h-full">
-                      <img src={currentPost.image} alt="Heya" className="object-cover max-h-full align-middle" />
+                    <div className="mx-auto h-full flex items-center justify-center">
+                      <img src={currentPost.image} alt="Heya" className="object-cover max-h-full" />
                     </div>
                     <div className="text-white w-[30%] border-l">
                       <div>
