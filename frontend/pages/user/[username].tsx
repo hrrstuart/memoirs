@@ -44,7 +44,7 @@ function User() {
         <nav className='flex flex-row mx-auto justify-between w-full pt-2'>
           <a className='uppercase hover:bg-slate-700 rounded-xl px-5 py-2 duration-100' href="/hrrstuart">Photos</a>
           <a className='uppercase hover:bg-slate-700 rounded-xl px-5 py-2 duration-100' href="/hrrstuart">Albums</a>
-          <a className='uppercase hover:bg-slate-700 rounded-xl px-5 py-2 duration-100' href="/hrrstuart">Tagged</a>
+          <a className='uppercase hover:bg-slate-700 rounded-xl px-5 py-2 duration-100' href="/hrrstuart">Activity</a>
         </nav>
       </div>
       <div>
