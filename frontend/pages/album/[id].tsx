@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
-import Information from '../../components/album/Information';
 import Posts from '../../components/album/Posts';
+import Description from '../../components/base-components/Description';
 import { IAlbum } from '../../util/types/albums/album';
 
 function Album() {
@@ -31,7 +31,12 @@ function Album() {
   ) : (
     <div className='flex flex-col space-y-2 text-white max-w-2xl'>
         <div>
-            <Information album={album} />
+            <Description
+                information={{ posts: 250 }}
+                profile={false}
+                text={{ title: album.information.title, description: album.information.description }}
+                thumbnail={album.posts[0].image}
+            />
         </div>
         <div>
             <Posts posts={album.posts} />
