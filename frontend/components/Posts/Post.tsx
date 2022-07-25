@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import { Post as IPost } from '../../util/types/posts/post'
+import { IPost } from '../../util/types/posts/post'
 
 export default function Post(props: { post: IPost, setModal: (post: IPost) => void }) {
   return (

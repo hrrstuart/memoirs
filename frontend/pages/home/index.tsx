@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "../../components/Modal";
 import Post from "../../components/Posts/Post";
-import { Post as IPost } from "../../util/types/posts/post";
+import { IPost } from "../../util/types/posts/post";
 
 function Home() {
   const [showModal, setShowModal] = useState<boolean>(false);
