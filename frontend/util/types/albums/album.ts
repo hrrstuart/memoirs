@@ -5,8 +5,8 @@ export interface IAlbum {
     information: {
         title: string;
         description?: string;
-        createdAt: string;
-        updatedAt: string;
+        createdAt: number;
+        updatedAt: number;
     }
     posts: IPost[];
     settings: {
