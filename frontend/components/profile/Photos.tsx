@@ -7,7 +7,7 @@ function Photos({ list }: { list: string[] | any[] }) {
     const post = typeof(item) === 'string';
 
     return (
-      <ImageOverlay image={post ? item : item.thumbnail} alt="Something" height='52' width='52'>
+      <ImageOverlay image={post ? item : item.thumbnail} alt="Something" height='h-52' width='w-52'>
         {
           !post ?
             <div className='absolute bottom-0 bg-black/70 w-full text-center py-1'>
