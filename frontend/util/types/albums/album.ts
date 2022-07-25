@@ -4,12 +4,12 @@ export interface IAlbum {
     ownerID: string;
     information: {
         title: string;
-        description: string;
+        description?: string;
         createdAt: string;
         updatedAt: string;
     }
     posts: IPost[];
     settings: {
-        admins: string[];
+        admins?: string[];
     }
 }
