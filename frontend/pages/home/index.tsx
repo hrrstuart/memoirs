@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "../../components/Modal";
-import Post from "../../components/Posts/Post";
+import Post from "../../components/photo-stream/Post";
 import { IPost } from "../../util/types/posts/post";
 
 function Home() {
