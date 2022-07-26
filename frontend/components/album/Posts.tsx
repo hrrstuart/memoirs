@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IPost } from '../../util/types/posts/post';
 import ImageOverlay from '../base-components/ImageOverlay';
+import PostModal from '../base-components/PostModal';
 
 function Posts(props: { posts: IPost[] }) {
+    const [showModal, setShowModal] = useState(false);
+    const [currentPost, setCurrentPost] = useState<IPost>();
+
+    const handleClick = (item: IPost) => {
+      setCurrentPost(item);
+      setShowModal(true);
+    }
+
     const Item = ({ post }: { post: IPost }) => {
-  
       return (
             <ImageOverlay 
+              onClick={() => handleClick(post)}
               parentStyling={{ gradient: "bg-gradient-to-t from-black/30" }}
               image={post.image}
               alt={`Photo uploaded by ${post.owner}`}
@@ -25,6 +34,7 @@ function Posts(props: { posts: IPost[] }) {
           <ul className="grid grid-cols-3 gap-5">
               { props.posts.map((p, i) => <Item key={i} post={p} />) }
           </ul>
+          <PostModal open={showModal} post={currentPost} setShowModal={setShowModal} />
       </div>
     )
 }
