@@ -1,7 +1,7 @@
 import React from 'react'
 import ImageOverlay from '../base-components/ImageOverlay';
 
-function Photos({ list }: { list: string[] | any[] }) {
+function GridDisplay({ list }: { list: string[] | any[] }) {
 
   const Item = ({ item }: { item: any | string }) => {
     const post = typeof(item) === 'string';
@@ -31,4 +31,4 @@ function Photos({ list }: { list: string[] | any[] }) {
   )
 }
 
-export default Photos
+export default GridDisplay

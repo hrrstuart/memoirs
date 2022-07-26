@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import Description from '../../components/base-components/Description';
-import Photos from '../../components/profile/Photos';
+import GridDisplay from '../../components/profile/GridDisplay';
 
 function User() {
   
@@ -52,7 +52,7 @@ function User() {
         </nav>
       </div>
       <div>
-        <Photos list={toDisplay} />
+        <GridDisplay list={toDisplay} />
       </div>
     </div>
   )
