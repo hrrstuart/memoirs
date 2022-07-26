@@ -28,8 +28,8 @@ function GridDisplay({ list }: { list: string[] | any[] }) {
               <div className='font-bold text-lg'>{item.title}</div>
               <div className='text-gray-400 text-sm'><strong>{item.photos}</strong> photos</div>
             </div> :
-            <div className='absolute top-0 left-0 right-0 bottom-0 m-auto hidden group-hover:block'>
-              <div>Shtory bud?</div>
+            <div className='absolute hidden group-hover:grid w-full h-full place-items-center'>
+              <div><strong>{item.likes}</strong> likes</div>
             </div>
         }
       </ImageOverlay>
