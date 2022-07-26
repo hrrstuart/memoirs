@@ -1,13 +1,27 @@
-import React from 'react'
+import { useRouter } from 'next/router';
+import React, { useState } from 'react'
 import ImageOverlay from '../base-components/ImageOverlay';
+import PostModal from '../base-components/PostModal';
 
 function GridDisplay({ list }: { list: string[] | any[] }) {
+  const router = useRouter();
+  const [showModal, setShowModal] = useState(false);
+  const [currentPost, setCurrentPost] = useState()
 
-  const Item = ({ item }: { item: any | string }) => {
-    const post = typeof(item) === 'string';
+  const handleClick = (item: any) => {
+    if (item.albumID) {
+      router.push(`/album/${item.albumID}`)
+    } else {
+      setCurrentPost(item);
+      setShowModal(true);
+    }
+  }
+
+  const Item = ({ item }: { item: any }) => {
+    const post = item.image !== undefined;
 
     return (
-      <ImageOverlay image={post ? item : item.thumbnail} alt="Something" height='h-52' width='w-52'>
+      <ImageOverlay onClick={() => handleClick(item)} image={post ? item.image : item.thumbnail} alt="Something" height='h-52' width='w-52'>
         {
           !post ?
             <div className='absolute bottom-0 bg-black/70 w-full text-center py-1'>
@@ -27,6 +41,7 @@ function GridDisplay({ list }: { list: string[] | any[] }) {
         <ul className="grid grid-cols-3 gap-5">
             { list.map((p, i) => <Item key={i} item={p} />) }
         </ul>
+        <PostModal open={showModal} post={currentPost} setShowModal={setShowModal} />
     </div>
   )
 }
