@@ -8,6 +8,7 @@ function Album() {
   const router = useRouter();
   const { id } = router.query;
   const [album, setAlbum] = useState<IAlbum | null>({
+    albumID: id as string,
     information: {
         title: 'Scenic Photos with the Lads',
         createdAt: (new Date()).getTime(),

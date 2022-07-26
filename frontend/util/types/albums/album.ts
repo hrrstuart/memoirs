@@ -1,6 +1,8 @@
 import { IPost } from "../posts/post";
 
 export interface IAlbum {
+    albumID: string;
+    thumbnail?: string;
     ownerID: string;
     information: {
         title: string;
