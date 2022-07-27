@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { IPost } from '../../util/types/posts/post';
 import ImageOverlay from '../base-components/ImageOverlay';
 import PostModal from '../base-components/PostModal';
+import ProfileTag from '../base-components/ProfileTag';
 
 function Posts(props: { posts: IPost[] }) {
     const [showModal, setShowModal] = useState(false);
@@ -21,10 +22,12 @@ function Posts(props: { posts: IPost[] }) {
               alt={`Photo uploaded by ${post.owner}`}
               height='h-52' width='w-52'
             >
-              <a href={`/user/${post.owner}`} className="absolute bottom-0 left-0 flex flex-row pb-2 pl-2 text-white font-medium">
-                  <img src="https://media.gettyimages.com/photos/picture-taken-07-october-2004-shows-google-founders-sergey-brin-and-picture-id76737519?s=2048x2048" className='rounded-full object-cover h-8 w-8 align-middle mr-2' alt="Something" />
-                  <span className='align-middle inline-block ml-1 mt-0.5'>{post.owner}</span>
-              </a>
+              <div className='absolute bottom-0 left-0 p-2'>
+                <ProfileTag
+                  name={post.owner}
+                  image='https://media.gettyimages.com/photos/picture-taken-07-october-2004-shows-google-founders-sergey-brin-and-picture-id76737519?s=2048x2048'
+                />
+              </div>
             </ImageOverlay>
       )
     }

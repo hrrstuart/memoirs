@@ -1,6 +1,7 @@
 import React, { SetStateAction } from 'react'
 import { IPost } from '../../util/types/posts/post';
 import Modal from '../Modal';
+import ProfileTag from './ProfileTag';
 
 function PostModal(props: {
     open: boolean,
@@ -17,13 +18,14 @@ function PostModal(props: {
                   <img src={props.post.image} alt="Heya" className="object-cover max-h-full" />
                 </div>
                 <div className="text-white w-[30%] border-l">
-                  <div>
-                    <a href={`/user/${props.post.owner}`} className="flex flex-row pl-2 border-b p-5 pb-3">
-                        <img src="https://media.gettyimages.com/photos/picture-taken-07-october-2004-shows-google-founders-sergey-brin-and-picture-id76737519?s=2048x2048" className='rounded-full object-cover h-8 w-8 align-middle mr-2' alt="Something" />
-                        <span className='align-middle inline-block ml-1 mt-0.5'><strong>{props.post.owner}</strong> to album &quot;Something&quot;</span>
-                    </a>
-                    <span className="p-5 block"><strong>{props.post.owner}</strong> {props.post.caption}</span>
+                  <div className='p-5 pb-0'>
+                    <ProfileTag
+                      name={props.post.owner}
+                      optionalText={"to album \"Something\""}
+                      image="https://media.gettyimages.com/photos/picture-taken-07-october-2004-shows-google-founders-sergey-brin-and-picture-id76737519?s=2048x2048"
+                    />
                   </div>
+                  <span className="p-5 block"><strong>{props.post.owner}</strong> {props.post.caption}</span>
                 </div>
               </div>
           : <h1>Oops looks like something went wrong</h1>
