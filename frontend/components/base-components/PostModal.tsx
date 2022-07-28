@@ -1,6 +1,7 @@
 import React, { SetStateAction } from 'react'
 import { IPost } from '../../util/types/posts/post';
 import Modal from '../Modal';
+import Comments from './Comments';
 import ProfileTag from './ProfileTag';
 
 function PostModal(props: {
@@ -17,15 +18,28 @@ function PostModal(props: {
                 <div className="mx-auto h-full flex items-center justify-center">
                   <img src={props.post.image} alt="Heya" className="object-cover max-h-full" />
                 </div>
-                <div className="text-white w-[30%] border-l">
-                  <div className='p-5 pb-0'>
+                <div className="text-white w-[30%] border-l p-5">
+                  <div className='pb-5'>
                     <ProfileTag
                       name={props.post.owner}
                       optionalText={"to album \"Something\""}
                       image="https://media.gettyimages.com/photos/picture-taken-07-october-2004-shows-google-founders-sergey-brin-and-picture-id76737519?s=2048x2048"
                     />
                   </div>
-                  <span className="p-5 block"><strong>{props.post.owner}</strong> {props.post.caption}</span>
+                  <div className='flex flex-col'>
+                    <span><strong>{props.post.owner}</strong> {props.post.caption}</span>
+                    <div className="relative py-4">
+                      <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-b border-gray-300"></div>
+                      </div>
+                      <div className="relative flex justify-center">
+                        <span className="bg-black px-4 text-sm text-gray-300">Comments</span>
+                      </div>
+                    </div>
+                    <div className='ml-2'>
+                      <Comments />
+                    </div>
+                  </div>
                 </div>
               </div>
           : <h1>Oops looks like something went wrong</h1>
