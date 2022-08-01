@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 import ImageOverlay from '../base-components/ImageOverlay';
 import PostModal from '../base-components/PostModal';
+import ProfileTag from '../base-components/ProfileTag';
 
 function GridDisplay({ list }: { list: string[] | any[] }) {
   const router = useRouter();
@@ -28,8 +29,10 @@ function GridDisplay({ list }: { list: string[] | any[] }) {
               <div className='font-bold text-lg'>{item.title}</div>
               <div className='text-gray-400 text-sm'><strong>{item.photos}</strong> photos</div>
             </div> :
-            <div className='absolute hidden group-hover:grid w-full h-full place-items-center'>
-              <div><strong>{item.likes}</strong> likes</div>
+            <div className='absolute bottom-0 hidden group-hover:block w-full'>
+              <div className="p-2">
+                <ProfileTag image='https://media.gettyimages.com/photos/handsome-young-adult-businessman-with-stubble-picture-id1250238624?s=2048x2048' name='Something is weird' albumID='291' />
+              </div>
             </div>
         }
       </ImageOverlay>
