@@ -9,7 +9,7 @@ function RoundedImage(props: {
 
   return (
     <div className={`${size} rounded-full`}>
-        <img src={props.image} alt={props.alt} />
+        <img className='object-cover' src={props.image} alt={props.alt} />
     </div>
   )
 }
