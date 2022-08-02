@@ -33,17 +33,13 @@ AppDataSource.initialize().then(async () => {
     // insert new users for test
     await AppDataSource.manager.save(
         AppDataSource.manager.create(User, {
-            firstName: "Timber",
-            lastName: "Saw",
-            age: 27
+            username: "hrrstuart"
         })
     )
 
     await AppDataSource.manager.save(
         AppDataSource.manager.create(User, {
-            firstName: "Phantom",
-            lastName: "Assassin",
-            age: 24
+            username: "nothrrstuart"
         })
     )
 
