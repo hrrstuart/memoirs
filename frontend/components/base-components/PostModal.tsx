@@ -3,6 +3,7 @@ import { IPost } from '../../util/types/posts/post';
 import Modal from '../Modal';
 import Comments from './Comments';
 import ProfileTag from './ProfileTag';
+import SectionSplit from './SectionSplit';
 
 function PostModal(props: {
     open: boolean,
@@ -27,16 +28,10 @@ function PostModal(props: {
                     />
                   </div>
                   <div className='flex flex-col'>
-                    <span><strong>{props.post.owner}</strong> {props.post.caption}</span>
-                    <div className="relative py-4">
-                      <div className="absolute inset-0 flex items-center">
-                        <div className="w-full border-b border-gray-300"></div>
-                      </div>
-                      <div className="relative flex justify-center">
-                        <span className="bg-black px-4 text-sm text-gray-300">Comments</span>
-                      </div>
-                    </div>
-                    <div className='ml-2'>
+                    <span className='pb-5'><strong>{props.post.owner}</strong> {props.post.caption}</span>
+                    <SectionSplit title="Comments" />
+                    <div className='space-y-5'>
+                      <textarea className='resize-none bg-transparent border-b focus:border-b-2 w-full py-1 outline-none max-h-36' placeholder="Enter a comment" />
                       <Comments />
                     </div>
                   </div>
