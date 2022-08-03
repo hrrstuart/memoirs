@@ -1,3 +1,4 @@
+import { PostController } from "./controller/PostController"
 import { UserController } from "./controller/UserController"
 
 export const Routes = [{
@@ -19,5 +20,25 @@ export const Routes = [{
     method: "delete",
     route: "/users/:id",
     controller: UserController,
+    action: "remove"
+}, {
+    method: "get",
+    route: "/posts",
+    controller: PostController,
+    action: "all"
+}, {
+    method: "get",
+    route: "/posts/:id",
+    controller: PostController,
+    action: "one"
+}, {
+    method: "post",
+    route: "/posts",
+    controller: PostController,
+    action: "save"
+}, {
+    method: "delete",
+    route: "/posts/:id",
+    controller: PostController,
     action: "remove"
 }]
