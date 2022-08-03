@@ -4,6 +4,7 @@ import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import { Routes } from "./routes"
 import { User } from "./entity/User"
+import { Post } from "./entity/Post"
 
 AppDataSource.initialize().then(async () => {
 
@@ -31,17 +32,22 @@ AppDataSource.initialize().then(async () => {
     app.listen(3000)
 
     // insert new users for test
-    await AppDataSource.manager.save(
+    const user = await AppDataSource.manager.save(
         AppDataSource.manager.create(User, {
             username: "hrrstuart"
         })
-    )
+    );
 
-    await AppDataSource.manager.save(
-        AppDataSource.manager.create(User, {
-            username: "nothrrstuart"
+    const post = await AppDataSource.manager.save(
+        AppDataSource.manager.create(Post, {
+            file_location: `${user.id}/something`,
+            user: user
         })
-    )
+    );
+
+    console.log(user);
+    console.log(post);
+    console.log('\n\n', post.user)
 
     console.log("Express server has started on port 3000. Open http://localhost:3000/users to see results")
 
