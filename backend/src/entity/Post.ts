@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, ManyToMany, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, ManyToMany, JoinColumn, ManyToOne } from "typeorm";
 import { User } from "./User";
 
 @Entity()
@@ -14,9 +14,8 @@ export class Post {
     updated_at: Date;
 
     // This isn't showing on database
-    @ManyToMany(type => User)
-    @JoinColumn()
-    owner: User;
+    @ManyToOne(() => User, (user) => user.posts)
+    user: User;
 
     @Column()
     file_location: string;
