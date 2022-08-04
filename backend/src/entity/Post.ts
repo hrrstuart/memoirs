@@ -1,11 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, ManyToMany, JoinColumn, ManyToOne } from "typeorm";
+import { Album } from "./Album";
 import { User } from "./User";
 
 @Entity()
 export class Post {
 
     @PrimaryGeneratedColumn("uuid")
-    post_id: string;
+    id: string;
 
     @CreateDateColumn()
     created_at: Date;
@@ -15,7 +16,17 @@ export class Post {
 
     // This isn't showing on database
     @ManyToOne(() => User, (user) => user.posts)
-    user: User;
+    owner: User;
+
+    @ManyToOne(() => Album, (album) => album.posts)
+    original_album: Album;
+
+    //  A post can be placed on multiple albums by clicking a "share to other album" button
+    @ManyToMany(() => Album, (album) => album.referenced_posts, {
+        nullable: true,
+        cascade: true,
+    })
+    other_albums: Album[];
 
     @Column()
     file_location: string;
