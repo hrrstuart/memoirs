@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, OneToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm"
+import { Album } from "./Album"
 import { Post } from "./Post"
 
 @Entity()
@@ -18,7 +19,10 @@ export class User {
     })
     username: string
 
-    @OneToMany(() => Post, (post) => post.user)
+    @OneToMany(() => Post, (post) => post.owner)
     posts: Post[];
+
+    @OneToMany(() => Album, (album) => album.owner)
+    albums: Album[];
 
 }
