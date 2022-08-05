@@ -1,18 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, ManyToMany, JoinColumn, ManyToOne } from "typeorm";
+import { Entity, Column, ManyToMany, ManyToOne } from "typeorm";
 import { Album } from "./Album";
+import { BaseColumns } from "./BaseColumns";
 import { User } from "./User";
 
 @Entity()
-export class Post {
-
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
-
-    @CreateDateColumn()
-    created_at: Date;
-
-    @UpdateDateColumn()
-    updated_at: Date;
+export class Post extends BaseColumns {
 
     // This isn't showing on database
     @ManyToOne(() => User, (user) => user.posts)
