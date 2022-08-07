@@ -1,8 +1,8 @@
 import { Entity, Column, OneToMany } from "typeorm"
 import { BaseColumns } from "./BaseColumns"
-import { Album } from "./interactions/Album"
-import { Comment } from "./interactions/Comment"
-import { Post } from "./interactions/Post"
+import { Album } from "./interactions/album/Album"
+import { Comment } from "./interactions/post/Comment"
+import { Post } from "./interactions/post/Post"
 
 @Entity()
 export class User extends BaseColumns {

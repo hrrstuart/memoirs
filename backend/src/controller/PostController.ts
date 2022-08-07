@@ -1,6 +1,6 @@
 import { getRepository } from "typeorm"
 import { NextFunction, Request, Response } from "express"
-import { Post } from "../entity/interactions/Post"
+import { Post } from "../entity/interactions/post/Post"
 
 export class PostController {
 

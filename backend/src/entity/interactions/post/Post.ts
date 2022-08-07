@@ -1,7 +1,7 @@
 import { Entity, Column, ManyToOne, OneToMany } from "typeorm";
-import { Album } from "./Album";
-import { BaseColumns } from "../BaseColumns";
-import { User } from "../User";
+import { Album } from "../album/Album";
+import { BaseColumns } from "../../BaseColumns";
+import { User } from "../../User";
 import { Comment } from "./Comment";
 
 @Entity()
