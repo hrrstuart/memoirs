@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne, OneToOne } from "typeorm";
 import { BaseColumns } from "../BaseColumns";
 import { User } from "../User";
+import { FollowType } from "./FollowType";
 
 @Entity()
 export class Follow extends BaseColumns {
@@ -22,9 +23,9 @@ export class Follow extends BaseColumns {
     /**
      * Define type of what user is following - either album or user
      */
-    @OneToOne(() => Follow, {
+    @OneToOne(() => FollowType, {
         eager: true
     })
-    followType: string;
+    following_type: string;
 
 }
