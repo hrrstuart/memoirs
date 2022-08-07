@@ -1,22 +1,30 @@
-import { Entity, ManyToOne, OneToMany, OneToOne } from "typeorm";
+import { Column, Entity, ManyToOne, OneToOne } from "typeorm";
 import { BaseColumns } from "../BaseColumns";
-import { Post } from "../Post";
 import { User } from "../User";
 
 @Entity()
 export class Follow extends BaseColumns {
 
-    // This isn't showing on database
+    /**
+     * ID of the user who is following something
+     */
     @ManyToOne(() => User, (user) => user.albums, {
-        nullable: true
+        nullable: true,
     })
-    follower: User;
+    follower_id: User;
 
-    //  Posts that aren't originally stored in album but have been embedded in it
-    @OneToMany(() => Post, (post) => post.other_albums)
-    following: Post[];
+    /**
+     * ID of the object that the user is following - can either be following an album or a user
+     */
+    @Column()
+    following_id: string;
 
-    @OneToOne(() => Follow)
+    /**
+     * Define type of what user is following - either album or user
+     */
+    @OneToOne(() => Follow, {
+        eager: true
+    })
     followType: string;
 
 }
