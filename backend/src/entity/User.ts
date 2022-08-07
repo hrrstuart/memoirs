@@ -1,6 +1,7 @@
 import { Entity, Column, OneToMany } from "typeorm"
 import { BaseColumns } from "./BaseColumns"
 import { Album } from "./interactions/album/Album"
+import { AlbumMember } from "./interactions/album/AlbumMember"
 import { Comment } from "./interactions/post/Comment"
 import { Post } from "./interactions/post/Post"
 
@@ -20,5 +21,8 @@ export class User extends BaseColumns {
 
     @OneToMany(() => Comment, (comment) => comment.user_id)
     comments: Comment[];
+
+    @OneToMany(() => AlbumMember, (album) => album.member_id)
+    albums_part_of: AlbumMember[];
 
 }
