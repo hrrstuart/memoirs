@@ -4,7 +4,7 @@ import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import { Routes } from "./routes"
 import { User } from "./entity/User"
-import { Post } from "./entity/Post"
+import { Post } from "./entity/interactions/Post"
 
 AppDataSource.initialize().then(async () => {
 

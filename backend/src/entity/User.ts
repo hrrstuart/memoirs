@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm"
-import { Album } from "./Album"
+import { Entity, Column, OneToMany } from "typeorm"
 import { BaseColumns } from "./BaseColumns"
-import { Post } from "./Post"
+import { Album } from "./interactions/Album"
+import { Post } from "./interactions/Post"
 
 @Entity()
 export class User extends BaseColumns {

@@ -1,7 +1,7 @@
 import { Entity, Column, ManyToMany, ManyToOne } from "typeorm";
 import { Album } from "./Album";
-import { BaseColumns } from "./BaseColumns";
-import { User } from "./User";
+import { BaseColumns } from "../BaseColumns";
+import { User } from "../User";
 
 @Entity()
 export class Post extends BaseColumns {
