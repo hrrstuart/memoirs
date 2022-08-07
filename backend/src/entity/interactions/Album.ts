@@ -10,7 +10,7 @@ export class Album extends BaseColumns {
     @ManyToOne(() => User, (user) => user.albums, {
         nullable: true
     })
-    owner: User;
+    user_id: User;
 
     @OneToMany(() => Post, (post) => post.original_album) 
     posts: Post[];

@@ -9,7 +9,7 @@ export class Post extends BaseColumns {
 
     // This isn't showing on database
     @ManyToOne(() => User, (user) => user.posts)
-    owner: User;
+    user_id: User;
 
     @ManyToOne(() => Album, (album) => album.posts)
     original_album: Album;

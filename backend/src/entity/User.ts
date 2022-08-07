@@ -12,10 +12,10 @@ export class User extends BaseColumns {
     })
     username: string
 
-    @OneToMany(() => Post, (post) => post.owner)
+    @OneToMany(() => Post, (post) => post.user_id)
     posts: Post[];
 
-    @OneToMany(() => Album, (album) => album.owner)
+    @OneToMany(() => Album, (album) => album.user_id)
     albums: Album[];
 
     @OneToMany(() => Comment, (comment) => comment.user_id)
