@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import * as express from "express"
 import * as bodyParser from "body-parser"
 import { Request, Response } from "express"
@@ -6,7 +7,7 @@ import { Routes } from "./routes"
 import { User } from "./entity/User"
 import { Post } from "./entity/interactions/post/Post"
 
-AppDataSource.initialize().then(async () => {
+AppDataSource.initialize().then(async (a) => {
 
     // create express app
     const app = express()
@@ -41,13 +42,13 @@ AppDataSource.initialize().then(async () => {
     const post = await AppDataSource.manager.save(
         AppDataSource.manager.create(Post, {
             file_location: `${user.id}/something`,
-            user: user
+            user_id: user
         })
     );
 
     console.log(user);
     console.log(post);
-    console.log('\n\n', post.user)
+    console.log('\n\n', post.user_id)
 
     console.log("Express server has started on port 3000. Open http://localhost:3000/users to see results")
 
