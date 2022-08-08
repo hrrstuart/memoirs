@@ -17,10 +17,11 @@ config({ path: join(process.cwd(), 'src/.env') })
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     TypeOrmModule.forRoot({
+      database: 'mysql',
       type: 'mysql',
       username: 'root',
+      port: 3306,
       password: process.env.MYSQL_PASSWORD,
-      synchronize: true,
       entities: ['dist/**/*.entity.{js,ts}']
     }),
     UserModule,
