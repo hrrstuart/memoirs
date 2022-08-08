@@ -1,4 +1,5 @@
-import { Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { CreateUserInput } from './dto/create-user.input';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 
@@ -9,5 +10,10 @@ export class UserResolver {
     @Query(returns => [User])
     users(): Promise<User[]> {
         return this.userService.findAll();
+    }
+
+    @Mutation(returns => User)
+    createUser(@Args('createUserInput') createUserInput: CreateUserInput): Promise<User> {
+        return this.userService.createUser(createUserInput);
     }
 }
