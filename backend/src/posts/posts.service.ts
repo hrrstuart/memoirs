@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
@@ -10,7 +10,7 @@ import { Post } from './post.entity';
 export class PostsService {
   constructor(
     @InjectRepository(Post) private postsRepository: Repository<Post>,
-    private userService: UserService
+    @Inject(forwardRef(() => UserService)) private userService: UserService
   ) {}
 
   create(createPostInput: CreatePostInput) {
@@ -21,6 +21,10 @@ export class PostsService {
 
   findAll() {
     return this.postsRepository.find();
+  }
+
+  findAllByOwner(user_id: string) {
+    return this.postsRepository.findBy({ userId: user_id })
   }
 
   findOne(id: string): Promise<Post> {
