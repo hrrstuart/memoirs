@@ -3,10 +3,10 @@ import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './user.entity';
-import { Post } from 'src/posts/post.entity';
-import { PostsService } from 'src/posts/posts.service';
-import { AlbumsService } from 'src/albums/albums.service';
-import { Album } from 'src/albums/album.entity';
+import { Post } from 'src/resources/posts/post.entity';
+import { PostsService } from 'src/resources/posts/posts.service';
+import { AlbumsService } from 'src/resources/albums/albums.service';
+import { Album } from 'src/resources/albums/album.entity';
 
 @Injectable()
 export class UserService {

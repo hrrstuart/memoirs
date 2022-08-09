@@ -1,12 +1,12 @@
 import { Repository } from 'typeorm';
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Post } from 'src/posts/post.entity';
-import { PostsService } from 'src/posts/posts.service';
-import { UserService } from 'src/user/user.service';
 import { CreateAlbumInput } from './dto/create-album.input';
 import { Album } from './album.entity';
-import { User } from 'src/user/user.entity';
+import { Post } from 'src/resources/posts/post.entity';
+import { PostsService } from 'src/resources/posts/posts.service';
+import { UserService } from 'src/resources/user/user.service';
+import { User } from 'src/resources/user/user.entity';
 
 @Injectable()
 export class AlbumsService {
