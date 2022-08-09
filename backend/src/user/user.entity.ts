@@ -19,10 +19,6 @@ export class User {
   @Field()
   username: string;
 
-  @Column()
-  @Field()
-  password: string;
-
   @CreateDateColumn()
   @Field((type) => Int)
   created_at: number;
