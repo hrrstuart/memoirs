@@ -2,8 +2,8 @@ import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nes
 import { AlbumsService } from './albums.service';
 import { Album } from './album.entity';
 import { CreateAlbumInput } from './dto/create-album.input';
-import { User } from 'src/user/user.entity';
-import { Post } from 'src/posts/post.entity';
+import { User } from 'src/resources/user/user.entity';
+import { Post } from 'src/resources/user_created/posts/post.entity';
 
 @Resolver(() => Album)
 export class AlbumsResolver {

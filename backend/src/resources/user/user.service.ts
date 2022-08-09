@@ -7,13 +7,16 @@ import { Post } from 'src/resources/user_created/posts/post.entity';
 import { PostsService } from 'src/resources/user_created/posts/posts.service';
 import { AlbumsService } from 'src/resources/user_created/albums/albums.service';
 import { Album } from 'src/resources/user_created/albums/album.entity';
+import { CommentsService } from '../user_created/comments/comments.service';
+import { Comment } from '../user_created/comments/comment.entity';
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectRepository(User) private userRepository: Repository<User>,
         @Inject(forwardRef(() => PostsService)) private postService: PostsService,
-        @Inject(forwardRef(() => AlbumsService)) private albumsService: AlbumsService
+        @Inject(forwardRef(() => AlbumsService)) private albumsService: AlbumsService,
+        @Inject(forwardRef(() => CommentsService)) private commentsService: CommentsService
     ) {}
 
     createUser(createUserInput: CreateUserInput): Promise<User> {
@@ -36,5 +39,9 @@ export class UserService {
 
     getAlbums(user_id: string): Promise<Album[]> {
         return this.albumsService.findAllByOwner(user_id);
+    }
+
+    getComments(user_id: string): Promise<Comment[]> {
+        return this.commentsService.findAllByOwner(user_id);
     }
 }

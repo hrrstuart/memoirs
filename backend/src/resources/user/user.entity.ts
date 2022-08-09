@@ -2,6 +2,7 @@ import { Post } from 'src/resources/user_created/posts/post.entity';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Album } from 'src/resources/user_created/albums/album.entity';
+import { Comment } from '../user_created/comments/comment.entity';
 
 @Entity()
 @ObjectType()
@@ -14,9 +15,13 @@ export class User {
   @Field(type => [Post], { nullable: true })
   posts?: Post[];
 
-  @OneToMany(() => Album, (album) => album.user_id)
+  @OneToMany(() => Album, (album) => album.user)
   @Field(type => [Album], { nullable: true })
   albums?: Album[];
+  
+  @OneToMany(() => Comment, (comment) => comment.user)
+  @Field(type => [Comment], { nullable: true })
+  comments?: Comment[];
 
   @Column({
     unique: true

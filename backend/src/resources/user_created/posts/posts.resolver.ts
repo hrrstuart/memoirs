@@ -2,7 +2,8 @@ import { Resolver, Query, Mutation, Args, Int, Parent, ResolveField } from '@nes
 import { PostsService } from './posts.service';
 import { Post } from './post.entity';
 import { CreatePostInput } from './dto/create-post.input';
-import { User } from 'src/user/user.entity';
+import { User } from 'src/resources/user/user.entity';
+import { Comment } from '../comments/comment.entity';
 
 @Resolver((of) => Post)
 export class PostsResolver {
@@ -26,5 +27,10 @@ export class PostsResolver {
   @ResolveField(returns => User)
   user(@Parent() post: Post): Promise<User> {
     return this.postsService.getOwner(post.userId)
+  }
+
+  @ResolveField(returns => Comment)
+  comments(@Parent() post: Post): Promise<Comment[]> {
+    return this.postsService.getComments(post.id)
   }
 }

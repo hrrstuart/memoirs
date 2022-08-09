@@ -3,8 +3,8 @@ import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateAlbumInput } from './dto/create-album.input';
 import { Album } from './album.entity';
-import { Post } from 'src/resources/posts/post.entity';
-import { PostsService } from 'src/resources/posts/posts.service';
+import { Post } from 'src/resources/user_created/posts/post.entity';
+import { PostsService } from 'src/resources/user_created/posts/posts.service';
 import { UserService } from 'src/resources/user/user.service';
 import { User } from 'src/resources/user/user.entity';
 
