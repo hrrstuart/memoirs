@@ -13,6 +13,7 @@ import { AppService } from './app.service';
 // Modules
 import { UserModule } from './user/user.module';
 import { PostsModule } from './posts/posts.module';
+import { AlbumsModule } from './albums/albums.module';
 
 config({ path: join(process.cwd(), 'src/.env') })
 
@@ -33,6 +34,7 @@ config({ path: join(process.cwd(), 'src/.env') })
     }),
     UserModule,
     PostsModule,
+    AlbumsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

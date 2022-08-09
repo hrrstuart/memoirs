@@ -5,12 +5,15 @@ import { CreateUserInput } from './dto/create-user.input';
 import { User } from './user.entity';
 import { Post } from 'src/posts/post.entity';
 import { PostsService } from 'src/posts/posts.service';
+import { AlbumsService } from 'src/albums/albums.service';
+import { Album } from 'src/albums/album.entity';
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectRepository(User) private userRepository: Repository<User>,
-        @Inject(forwardRef(() => PostsService)) private postService: PostsService
+        @Inject(forwardRef(() => PostsService)) private postService: PostsService,
+        @Inject(forwardRef(() => AlbumsService)) private albumsService: AlbumsService
     ) {}
 
     createUser(createUserInput: CreateUserInput): Promise<User> {
@@ -29,5 +32,9 @@ export class UserService {
 
     getPosts(userId: string): Promise<Post[]> {
         return this.postService.findAllByOwner(userId);
+    }
+
+    getAlbums(user_id: string): Promise<Album[]> {
+        return this.albumsService.findAllByOwner(user_id);
     }
 }

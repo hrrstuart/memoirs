@@ -1,4 +1,5 @@
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { Album } from 'src/albums/album.entity';
 import { Post } from 'src/posts/post.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './user.entity';
@@ -26,5 +27,10 @@ export class UserResolver {
     @ResolveField(returns => [Post])
     posts(@Parent() user: User): Promise<Post[]> {
       return this.userService.getPosts(user.id);
+    }
+
+    @ResolveField(returns => [Album])
+    albums(@Parent() user: User): Promise<Album[]> {
+      return this.userService.getAlbums(user.id);
     }
 }
