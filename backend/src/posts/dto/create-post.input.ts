@@ -5,6 +5,9 @@ export class CreatePostInput {
   @Field()
   userId: string;
 
+  @Field({ nullable: true })
+  description: string;
+
   @Field()
   album_id: string;
 

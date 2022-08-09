@@ -10,6 +10,10 @@ export class Post {
   @Field((type) => String)
   id: string;
 
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  description: string;
+
   @Column()
   @Field()
   userId: string;
