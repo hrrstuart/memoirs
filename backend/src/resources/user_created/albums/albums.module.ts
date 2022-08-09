@@ -4,7 +4,7 @@ import { AlbumsResolver } from './albums.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Album } from './album.entity';
 import { UserModule } from 'src/resources/user/user.module';
-import { PostsModule } from 'src/resources/posts/posts.module';
+import { PostsModule } from 'src/resources/user_created/posts/posts.module';
 
 @Module({
   imports: [

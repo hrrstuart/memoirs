@@ -1,6 +1,6 @@
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
-import { Album } from 'src/resources/albums/album.entity';
-import { Post } from 'src/resources/posts/post.entity';
+import { Album } from 'src/resources/user_created/albums/album.entity';
+import { Post } from 'src/resources/user_created/posts/post.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './user.entity';
 import { UserService } from './user.service';

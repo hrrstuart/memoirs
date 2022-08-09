@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Album } from 'src/resources/albums/album.entity';
+import { Album } from 'src/resources/user_created/albums/album.entity';
 import { User } from 'src/resources/user/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 

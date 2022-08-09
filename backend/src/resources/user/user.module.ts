@@ -3,8 +3,8 @@ import { UserService } from './user.service';
 import { UserResolver } from './user.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user.entity';
-import { PostsModule } from 'src/resources/posts/posts.module';
-import { AlbumsModule } from 'src/resources/albums/albums.module';
+import { PostsModule } from 'src/resources/user_created/posts/posts.module';
+import { AlbumsModule } from 'src/resources/user_created/albums/albums.module';
 
 @Module({
   imports: [

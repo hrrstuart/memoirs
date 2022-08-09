@@ -12,8 +12,8 @@ import { AppService } from './app.service';
 
 // Modules
 import { UserModule } from './resources/user/user.module';
-import { PostsModule } from './resources/posts/posts.module';
-import { AlbumsModule } from './resources/albums/albums.module';
+import { PostsModule } from './resources/user_created/posts/posts.module';
+import { AlbumsModule } from './resources/user_created/albums/albums.module';
 
 config({ path: join(process.cwd(), 'src/.env') })
 
