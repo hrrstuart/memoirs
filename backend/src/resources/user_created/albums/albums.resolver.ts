@@ -26,7 +26,7 @@ export class AlbumsResolver {
 
   @ResolveField(returns => User)
   user(@Parent() album: Album): Promise<User> {
-    return this.albumsService.getOwner(album.user_id)
+    return this.albumsService.getOwner(album.userId)
   }
 
   @ResolveField(returns => [Post])

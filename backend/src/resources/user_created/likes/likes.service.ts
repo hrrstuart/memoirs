@@ -33,8 +33,8 @@ export class LikesService {
     return this.likesRepository.findBy({ parent_id, parent_type })
   }
 
-  findAllByOwner(user_id: string) {
-    return this.likesRepository.findBy({ user_id });
+  findAllByOwner(userId: string) {
+    return this.likesRepository.findBy({ userId });
   }
 
   getOwner(user_id: string) {

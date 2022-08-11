@@ -26,8 +26,8 @@ export class AlbumsService {
         return this.albumRepository.find();
     }
 
-    findAllByOwner(user_id: string): Promise<Album[]> {
-      return this.albumRepository.findBy({ user_id });
+    findAllByOwner(userId: string): Promise<Album[]> {
+      return this.albumRepository.findBy({ userId });
     }
 
     findOne(id: string): Promise<Album> {

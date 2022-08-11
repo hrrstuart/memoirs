@@ -18,7 +18,7 @@ export class Like {
 
   @Column()
   @Field()
-  user_id: string;
+  userId: string;
 
   @Column()
   @Field()

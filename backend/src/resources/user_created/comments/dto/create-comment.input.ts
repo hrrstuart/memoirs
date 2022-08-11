@@ -4,10 +4,10 @@ import { InputType, Int, Field } from '@nestjs/graphql';
 export class CreateCommentInput {
 
   @Field()
-  user_id: string;
+  userId: string;
 
   @Field()
-  post_id: string;
+  postId: string;
 
   @Field()
   content: string;

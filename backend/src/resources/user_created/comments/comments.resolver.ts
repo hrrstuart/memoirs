@@ -27,6 +27,6 @@ export class CommentsResolver {
 
   @ResolveField(returns => User)
   user(@Parent() comment: Comment): Promise<User> {
-    return this.commentsService.getOwner(comment.user_id)
+    return this.commentsService.getOwner(comment.userId)
   }
 }

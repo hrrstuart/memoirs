@@ -25,11 +25,11 @@ export class Comment {
 
   @Column()
   @Field()
-  user_id: string;
+  userId: string;
 
   @Column()
   @Field()
-  post_id: string;
+  postId: string;
 
   @ManyToOne(type => User, (user) => user.comments)
   @Field(type => User)

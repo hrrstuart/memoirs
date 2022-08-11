@@ -26,12 +26,12 @@ export class CommentsService {
     return this.commentsRepository.findOneByOrFail({ id })
   }
 
-  findAllByOwner(user_id: string) {
-    return this.commentsRepository.findBy({ user_id });
+  findAllByOwner(userId: string) {
+    return this.commentsRepository.findBy({ userId });
   }
 
-  findAllByPost(post_id: string) {
-    return this.commentsRepository.findBy({ post_id });
+  findAllByPost(postId: string) {
+    return this.commentsRepository.findBy({ postId });
   }
 
   getOwner(user_id: string) {
