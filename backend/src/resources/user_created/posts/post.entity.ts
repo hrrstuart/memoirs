@@ -22,7 +22,7 @@ export class Post {
 
   @Column()
   @Field()
-  album_id: string;
+  albumId: string;
 
   @ManyToOne(() => User, (user) => user.posts)
   @Field(() => User)

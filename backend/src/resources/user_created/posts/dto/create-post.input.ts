@@ -9,7 +9,7 @@ export class CreatePostInput {
   description: string;
 
   @Field()
-  album_id: string;
+  albumId: string;
 
   @Field()
   image_url: string;

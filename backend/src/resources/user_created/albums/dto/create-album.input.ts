@@ -2,8 +2,9 @@ import { InputType, Int, Field } from '@nestjs/graphql';
 
 @InputType()
 export class CreateAlbumInput {
+
   @Field()
-  user_id: string;
+  userId: string;
 
   @Field()
   title: string;

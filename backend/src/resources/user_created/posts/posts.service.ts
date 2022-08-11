@@ -29,8 +29,8 @@ export class PostsService {
     return this.postsRepository.find();
   }
 
-  findAllByAlbum(album_id: string) {
-    return this.postsRepository.findBy({ album_id })
+  findAllByAlbum(albumId: string) {
+    return this.postsRepository.findBy({ albumId })
   }
 
   findAllByOwner(user_id: string) {
