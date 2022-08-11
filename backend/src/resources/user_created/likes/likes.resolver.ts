@@ -26,7 +26,7 @@ export class LikesResolver {
 
   @ResolveField(returns => User)
   user(@Parent() like: Like): Promise<User> {
-    return this.likesService.getOwner(like.user_id);
+    return this.likesService.getOwner(like.userId);
   }
 
   @ResolveField(returns => Post)
