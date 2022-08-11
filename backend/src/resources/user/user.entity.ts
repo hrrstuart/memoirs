@@ -1,12 +1,14 @@
 import { Post } from 'src/resources/user_created/posts/post.entity';
-import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Album } from 'src/resources/user_created/albums/album.entity';
 import { Comment } from '../user_created/comments/comment.entity';
+import { Like } from '../user_created/likes/like.entity';
 
 @Entity()
 @ObjectType()
 export class User {
+
   @PrimaryGeneratedColumn("uuid")
   @Field((type) => String)
   id: string;
@@ -23,6 +25,10 @@ export class User {
   @Field(type => [Comment], { nullable: true })
   comments?: Comment[];
 
+  @OneToMany(() => Like, (like) => like.user)
+  @Field(type => [Like], { nullable: true })
+  likes?: Like[];
+
   @Column({
     unique: true
   })
@@ -30,10 +36,11 @@ export class User {
   username: string;
 
   @CreateDateColumn()
-  @Field((type) => Int)
-  created_at: number;
+  @Field((type) => Date)
+  created_at: Date;
 
   @UpdateDateColumn()
-  @Field((type) => Int)
-  updated_at: number;
+  @Field((type) => Date)
+  updated_at: Date;
+
 }

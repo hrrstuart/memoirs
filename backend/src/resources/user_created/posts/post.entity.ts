@@ -1,8 +1,9 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 import { Album } from 'src/resources/user_created/albums/album.entity';
 import { User } from 'src/resources/user/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Comment } from '../comments/comment.entity';
+import { Like } from '../likes/like.entity';
 
 @Entity()
 @ObjectType()
@@ -31,9 +32,13 @@ export class Post {
   @Field(() => Album)
   album: Album;
 
-  @ManyToOne(() => Comment, (comment) => comment.post)
+  @OneToMany(() => Comment, (comment) => comment.post)
   @Field(() => [Comment])
   comments: Comment[];
+
+  @OneToMany(() => Like, (like) => like.post)
+  @Field(() => [Like])
+  likes: Like[];
 
   @Column()
   @Field()

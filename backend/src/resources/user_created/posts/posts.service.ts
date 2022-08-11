@@ -5,6 +5,8 @@ import { UserService } from 'src/resources/user/user.service';
 import { Repository } from 'typeorm';
 import { Comment } from '../comments/comment.entity';
 import { CommentsService } from '../comments/comments.service';
+import { Like } from '../likes/like.entity';
+import { LikesService } from '../likes/likes.service';
 import { CreatePostInput } from './dto/create-post.input';
 import { Post } from './post.entity';
 
@@ -14,6 +16,7 @@ export class PostsService {
     @InjectRepository(Post) private postsRepository: Repository<Post>,
     @Inject(forwardRef(() => UserService)) private userService: UserService,
     @Inject(forwardRef(() => CommentsService)) private commentsService: CommentsService,
+    @Inject(forwardRef(() => LikesService)) private likesService: LikesService,
   ) {}
 
   create(createPostInput: CreatePostInput) {
@@ -44,5 +47,9 @@ export class PostsService {
 
   getComments(post_id: string): Promise<Comment[]> {
     return this.commentsService.findAllByPost(post_id);
+  }
+
+  getLikes(post_id: string): Promise<Like[]> {
+    return this.likesService.findParentLikes(post_id, "POST");
   }
 }

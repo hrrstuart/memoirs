@@ -4,6 +4,7 @@ import { Post } from './post.entity';
 import { CreatePostInput } from './dto/create-post.input';
 import { User } from 'src/resources/user/user.entity';
 import { Comment } from '../comments/comment.entity';
+import { Like } from '../likes/like.entity';
 
 @Resolver((of) => Post)
 export class PostsResolver {
@@ -32,5 +33,10 @@ export class PostsResolver {
   @ResolveField(returns => Comment)
   comments(@Parent() post: Post): Promise<Comment[]> {
     return this.postsService.getComments(post.id)
+  }
+
+  @ResolveField(returns => Like)
+  likes(@Parent() post: Post): Promise<Like[]> {
+    return this.postsService.getLikes(post.id)
   }
 }
