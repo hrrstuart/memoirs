@@ -37,6 +37,10 @@ export class User {
   @Field()
   username: string;
 
+  @Column()
+  @Field()
+  password: string;
+
   @CreateDateColumn()
   @Field((type) => Date)
   created_at: Date;

@@ -15,6 +15,7 @@ import { UserModule } from './resources/user/user.module';
 import { PostsModule } from './resources/user_created/posts/posts.module';
 import { AlbumsModule } from './resources/user_created/albums/albums.module';
 import { LikesModule } from "./resources/user_created/likes/likes.module";
+import { AuthModule } from "./resources/auth/auth.module";
 
 config({ path: join(process.cwd(), 'src/.env') })
 
@@ -36,7 +37,8 @@ config({ path: join(process.cwd(), 'src/.env') })
     UserModule,
     PostsModule,
     AlbumsModule,
-    LikesModule
+    LikesModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
