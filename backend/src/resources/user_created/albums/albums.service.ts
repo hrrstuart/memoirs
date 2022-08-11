@@ -39,6 +39,6 @@ export class AlbumsService {
     }
 
     getOwner(ownerId: string): Promise<User> {
-        return this.userService.findOne(ownerId)
+        return this.userService.findOne("id", ownerId);
     }
 }

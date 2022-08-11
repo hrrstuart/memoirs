@@ -35,6 +35,6 @@ export class CommentsService {
   }
 
   getOwner(user_id: string) {
-    return this.userService.findOne(user_id);
+    return this.userService.findOne("id", user_id);
   }
 }

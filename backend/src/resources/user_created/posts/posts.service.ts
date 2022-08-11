@@ -42,7 +42,7 @@ export class PostsService {
   }
 
   getOwner(ownerId: string): Promise<User> {
-    return this.userService.findOne(ownerId)
+    return this.userService.findOne("id", ownerId)
   }
 
   getComments(post_id: string): Promise<Comment[]> {

@@ -38,7 +38,7 @@ export class LikesService {
   }
 
   getOwner(user_id: string) {
-    return this.usersService.findOne(user_id);
+    return this.usersService.findOne("id", user_id);
   }
 
   getPost(post_id: string) {

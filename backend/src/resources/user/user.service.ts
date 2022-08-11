@@ -32,8 +32,10 @@ export class UserService {
         return this.userRepository.find();
     }
 
-    findOne(id: string): Promise<User> {
-        return this.userRepository.findOneBy({ id });
+    findOne(searchType: string, searchQuery: string): Promise<User> {
+        return searchType === "id" ?
+            this.userRepository.findOneByOrFail({ id: searchQuery }) :
+            this.userRepository.findOneByOrFail({ username: searchQuery });
     }
 
     getPosts(userId: string): Promise<Post[]> {

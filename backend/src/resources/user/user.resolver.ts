@@ -17,8 +17,11 @@ export class UserResolver {
     }
 
     @Query(returns => User)
-    getUser(@Args('id', {type: () => String}) id: string ): Promise<User> {
-        return this.userService.findOne(id);
+    getUser(
+      @Args('query', {type: () => String}) query: string,
+      @Args('type', { type: () => String, defaultValue: "id" } ) type: string
+    ): Promise<User> {
+        return this.userService.findOne(type, query);
     }
 
     @Mutation(returns => User)
