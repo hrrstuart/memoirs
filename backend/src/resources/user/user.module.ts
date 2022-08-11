@@ -1,4 +1,4 @@
-import { forwardRef, Module } from '@nestjs/common';
+import { forwardRef, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserResolver } from './user.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -7,6 +7,7 @@ import { PostsModule } from 'src/resources/user_created/posts/posts.module';
 import { AlbumsModule } from 'src/resources/user_created/albums/albums.module';
 import { CommentsModule } from '../user_created/comments/comments.module';
 import { LikesModule } from '../user_created/likes/likes.module';
+import { AuthMiddleware } from 'src/middleware/auth.middleware';
 
 @Module({
   imports: [
@@ -19,4 +20,8 @@ import { LikesModule } from '../user_created/likes/likes.module';
   providers: [UserService, UserResolver],
   exports: [UserService]
 })
-export class UserModule {}
+export class UserModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware).forRoutes('createPost')
+  }
+}
