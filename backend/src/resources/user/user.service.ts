@@ -1,6 +1,7 @@
 import { Repository } from 'typeorm';
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from "bcrypt";
 
 import { CreateUserInput } from './dto/create-user.input';
 
@@ -27,8 +28,14 @@ export class UserService {
         @Inject(forwardRef(() => LikesService)) private likesService: LikesService,
     ) {}
 
-    createUser(createUserInput: CreateUserInput): Promise<User> {
-        const newUser = this.userRepository.create(createUserInput);
+    async createUser(createUserInput: CreateUserInput): Promise<User> {
+        const salt = await bcrypt.genSalt(12);
+        const hash = await bcrypt.hash(createUserInput.password, salt);
+        
+        const newUser = this.userRepository.create({
+            ...createUserInput,
+            password: hash
+        });
 
         return this.userRepository.save(newUser);
     }
