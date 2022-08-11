@@ -1,9 +1,11 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Album } from 'src/resources/user_created/albums/album.entity';
-import { User } from 'src/resources/user/user.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
+// Entities
+import { Album } from 'src/resources/user_created/albums/album.entity';
 import { Comment } from '../comments/comment.entity';
 import { Like } from '../likes/like.entity';
+import { User } from 'src/resources/user/user.entity';
 
 @Entity()
 @ObjectType()

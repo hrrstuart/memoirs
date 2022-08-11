@@ -1,8 +1,7 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 import { User } from 'src/resources/user/user.entity';
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Post } from '../posts/post.entity';
-import { ParentType } from './dto/create-like.input';
 
 @Entity()
 @ObjectType()

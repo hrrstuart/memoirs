@@ -1,10 +1,12 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserService } from 'src/resources/user/user.service';
 import { Repository } from 'typeorm';
+
+import { UserService } from 'src/resources/user/user.service';
 import { PostsService } from '../posts/posts.service';
-import { CreateLikeInput, ParentType } from './dto/create-like.input';
-import { UpdateLikeInput } from './dto/update-like.input';
+import { CreateLikeInput } from './dto/create-like.input';
+
+// Entities
 import { Like } from './like.entity';
 
 @Injectable()

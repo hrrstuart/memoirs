@@ -1,11 +1,13 @@
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { CreateUserInput } from './dto/create-user.input';
+import { UserService } from './user.service';
+
+// Entities
 import { Album } from 'src/resources/user_created/albums/album.entity';
-import { Post } from 'src/resources/user_created/posts/post.entity';
 import { Comment } from '../user_created/comments/comment.entity';
 import { Like } from '../user_created/likes/like.entity';
-import { CreateUserInput } from './dto/create-user.input';
+import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
-import { UserService } from './user.service';
 
 @Resolver(of => User)
 export class UserResolver {

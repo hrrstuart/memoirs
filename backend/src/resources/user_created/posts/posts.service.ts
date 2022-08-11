@@ -1,14 +1,18 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/resources/user/user.entity';
-import { UserService } from 'src/resources/user/user.service';
 import { Repository } from 'typeorm';
-import { Comment } from '../comments/comment.entity';
-import { CommentsService } from '../comments/comments.service';
-import { Like } from '../likes/like.entity';
-import { LikesService } from '../likes/likes.service';
 import { CreatePostInput } from './dto/create-post.input';
+
+//Services
+import { CommentsService } from '../comments/comments.service';
+import { LikesService } from '../likes/likes.service';
+import { UserService } from 'src/resources/user/user.service';
+
+// Entities
+import { Comment } from '../comments/comment.entity';
+import { Like } from '../likes/like.entity';
 import { Post } from './post.entity';
+import { User } from 'src/resources/user/user.entity';
 
 @Injectable()
 export class PostsService {

@@ -1,9 +1,10 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserService } from 'src/resources/user/user.service';
 import { Repository } from 'typeorm';
+
 import { Comment } from './comment.entity';
 import { CreateCommentInput } from './dto/create-comment.input';
+import { UserService } from 'src/resources/user/user.service';
 
 @Injectable()
 export class CommentsService {

@@ -1,10 +1,10 @@
 import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
 import { CommentsService } from './comments.service';
-import { Comment } from './comment.entity';
 import { CreateCommentInput } from './dto/create-comment.input';
-import { UpdateCommentInput } from './dto/update-comment.input';
+
+// Entities
+import { Comment } from './comment.entity';
 import { User } from 'src/resources/user/user.entity';
-import { Post } from '../posts/post.entity';
 
 @Resolver(() => Comment)
 export class CommentsResolver {

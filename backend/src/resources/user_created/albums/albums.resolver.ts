@@ -1,7 +1,9 @@
 import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
 import { AlbumsService } from './albums.service';
-import { Album } from './album.entity';
 import { CreateAlbumInput } from './dto/create-album.input';
+
+// Entities
+import { Album } from './album.entity';
 import { User } from 'src/resources/user/user.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 

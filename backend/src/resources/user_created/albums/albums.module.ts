@@ -1,8 +1,10 @@
 import { forwardRef, Module } from '@nestjs/common';
-import { AlbumsService } from './albums.service';
-import { AlbumsResolver } from './albums.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Album } from './album.entity';
+import { AlbumsService } from './albums.service';
+import { AlbumsResolver } from './albums.resolver';
+
+// Modules
 import { UserModule } from 'src/resources/user/user.module';
 import { PostsModule } from 'src/resources/user_created/posts/posts.module';
 

@@ -1,8 +1,11 @@
 import { forwardRef, Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { LikesService } from './likes.service';
 import { LikesResolver } from './likes.resolver';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Like } from './like.entity';
+
+// Modules
 import { UserModule } from 'src/resources/user/user.module';
 import { PostsModule } from '../posts/posts.module';
 

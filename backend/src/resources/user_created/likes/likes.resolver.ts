@@ -1,9 +1,11 @@
 import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { LikesService } from './likes.service';
-import { Like } from './like.entity';
 import { CreateLikeInput } from './dto/create-like.input';
-import { User } from 'src/resources/user/user.entity';
+
+// Entities
+import { Like } from './like.entity';
 import { Post } from '../posts/post.entity';
+import { User } from 'src/resources/user/user.entity';
 
 @Resolver(() => Like)
 export class LikesResolver {

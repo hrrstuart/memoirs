@@ -1,16 +1,21 @@
 import { Repository } from 'typeorm';
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { CreateUserInput } from './dto/create-user.input';
-import { User } from './user.entity';
-import { Post } from 'src/resources/user_created/posts/post.entity';
-import { PostsService } from 'src/resources/user_created/posts/posts.service';
+
+// Services
 import { AlbumsService } from 'src/resources/user_created/albums/albums.service';
-import { Album } from 'src/resources/user_created/albums/album.entity';
 import { CommentsService } from '../user_created/comments/comments.service';
+import { LikesService } from '../user_created/likes/likes.service';
+import { PostsService } from 'src/resources/user_created/posts/posts.service';
+
+// Entities
+import { Album } from 'src/resources/user_created/albums/album.entity';
 import { Comment } from '../user_created/comments/comment.entity';
 import { Like } from '../user_created/likes/like.entity';
-import { LikesService } from '../user_created/likes/likes.service';
+import { Post } from 'src/resources/user_created/posts/post.entity';
+import { User } from './user.entity';
 
 @Injectable()
 export class UserService {

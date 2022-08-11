@@ -10,11 +10,6 @@ import { Like } from '../likes/like.entity';
 export class PostsResolver {
   constructor(private readonly postsService: PostsService) {}
 
-  @Mutation(() => Post)
-  createPost(@Args('createPostInput') createPostInput: CreatePostInput) {
-    return this.postsService.create(createPostInput);
-  }
-
   @Query(returns => Post)
   post(@Args('id', { type: () => String }) id: string): Promise<Post> {
     return this.postsService.findOne(id);
