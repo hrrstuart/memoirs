@@ -10,7 +10,7 @@ export class GqlAuthGuard extends AuthGuard('local') {
 
     async canActivate(context: ExecutionContext) {
         const result = (await super.canActivate(context)) as boolean;
-        const request = this.getRequest(context)
+        const request = this.getRequest(context);
         await super.logIn(request);
         return result;
     }
