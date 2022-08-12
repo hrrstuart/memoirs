@@ -38,8 +38,8 @@ export class User {
   username: string;
 
   @Column()
-  @Field()
-  password: string;
+  @Field({ nullable: true })
+  password?: string;
 
   @CreateDateColumn()
   @Field((type) => Date)
