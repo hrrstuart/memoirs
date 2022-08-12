@@ -20,9 +20,6 @@ export class AuthService {
     }
 
     login(user: User) {
-        // const { password, ...rest } = user;
-
-        console.log('User: ', user);
         return { user }
     }
 }
