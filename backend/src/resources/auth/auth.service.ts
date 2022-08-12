@@ -19,12 +19,10 @@ export class AuthService {
         return null;
     }
 
-    async login(user: User) {
-        const { password, ...rest } = user;
+    login(user: User) {
+        // const { password, ...rest } = user;
 
-        return {
-            token: 'aj',
-            user: rest
-        }
+        console.log('User: ', user);
+        return { user }
     }
 }

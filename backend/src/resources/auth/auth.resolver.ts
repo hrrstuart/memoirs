@@ -12,6 +12,8 @@ export class AuthResolver {
     @Mutation(() => LoginResponse)
     @UseGuards(GqlAuthGuard)
     login(@Args('loginUserInput') loginUserInput: LoginUserInput, @Context() context) {
-        return this.authService.login(context.user);
+        console.log('Session ID: ', context.req.sessionID);
+        console.log('Other session: ', context.req.session);
+        return this.authService.login(context.req.user);
     }
 }
