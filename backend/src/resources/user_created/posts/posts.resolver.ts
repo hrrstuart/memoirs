@@ -1,10 +1,12 @@
-import { Resolver, Query, Mutation, Args, Int, Parent, ResolveField } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, Parent, ResolveField, Context } from '@nestjs/graphql';
 import { PostsService } from './posts.service';
 import { Post } from './post.entity';
 import { CreatePostInput } from './dto/create-post.input';
 import { User } from 'src/resources/user/user.entity';
 import { Comment } from '../comments/comment.entity';
 import { Like } from '../likes/like.entity';
+import { UseGuards } from '@nestjs/common';
+import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 
 @Resolver((of) => Post)
 export class PostsResolver {
@@ -18,6 +20,12 @@ export class PostsResolver {
   @Query(returns => [Post])
   posts() {
     return this.postsService.findAll();
+  }
+
+  @Mutation(returns => Post)
+  @UseGuards(AuthenticatedGuard)
+  createPost(@Args('createPostInput') createPostInput: CreatePostInput, @Context() req): Promise<Post> {
+    return this.postsService.create(createPostInput);
   }
 
   @ResolveField(returns => User)
