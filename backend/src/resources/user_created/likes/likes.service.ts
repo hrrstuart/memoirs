@@ -17,8 +17,11 @@ export class LikesService {
     @Inject(forwardRef(() => PostsService)) private postsService: PostsService,
   ) {}
 
-  create(createLikeInput: CreateLikeInput) {
-    const newLike = this.likesRepository.create(createLikeInput);
+  create(userId: string, createLikeInput: CreateLikeInput) {
+    const newLike = this.likesRepository.create({
+      userId,
+      ...createLikeInput
+    });
 
     return this.likesRepository.save(newLike);
   }

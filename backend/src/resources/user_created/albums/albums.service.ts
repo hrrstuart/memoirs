@@ -20,8 +20,11 @@ export class AlbumsService {
         @Inject(forwardRef(() => PostsService)) private postService: PostsService
     ) {}
 
-    create(createAlbumInput: CreateAlbumInput): Promise<Album> {
-        const newAlbum = this.albumRepository.create(createAlbumInput);
+    create(userID: string, createAlbumInput: CreateAlbumInput): Promise<Album> {
+        const newAlbum = this.albumRepository.create({
+            userId: userID,
+            ...createAlbumInput
+        });
 
         return this.albumRepository.save(newAlbum);
     }

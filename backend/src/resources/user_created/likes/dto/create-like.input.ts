@@ -21,9 +21,6 @@ export const ParentType = new GraphQLEnumType({
 export class CreateLikeInput {
 
   @Field()
-  userId: string;
-
-  @Field()
   parent_id: string;
   
   @Field()

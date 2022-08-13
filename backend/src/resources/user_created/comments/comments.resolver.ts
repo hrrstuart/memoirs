@@ -1,18 +1,21 @@
-import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent, Context } from '@nestjs/graphql';
 import { CommentsService } from './comments.service';
 import { CreateCommentInput } from './dto/create-comment.input';
 
 // Entities
 import { Comment } from './comment.entity';
 import { User } from 'src/resources/user/user.entity';
+import { UseGuards } from '@nestjs/common';
+import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 
 @Resolver(() => Comment)
 export class CommentsResolver {
   constructor(private readonly commentsService: CommentsService) {}
 
   @Mutation(() => Comment)
-  createComment(@Args('createCommentInput') createCommentInput: CreateCommentInput) {
-    return this.commentsService.create(createCommentInput);
+  @UseGuards(AuthenticatedGuard)
+  createComment(@Args('createCommentInput') createCommentInput: CreateCommentInput, @Context() context) {
+    return this.commentsService.create(context.req.user.id, createCommentInput);
   }
 
   @Query(() => [Comment])

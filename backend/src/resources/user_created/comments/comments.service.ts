@@ -13,8 +13,11 @@ export class CommentsService {
     @Inject(forwardRef(() => UserService)) private userService: UserService
     ) {}
 
-  create(createCommentInput: CreateCommentInput) {
-    const newComment = this.commentsRepository.create(createCommentInput);
+  create(userId: string, createCommentInput: CreateCommentInput) {
+    const newComment = this.commentsRepository.create({
+      userId,
+      ...createCommentInput
+    });
 
     return this.commentsRepository.save(newComment);
   }

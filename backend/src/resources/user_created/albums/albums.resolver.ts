@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent, Context } from '@nestjs/graphql';
 import { AlbumsService } from './albums.service';
 import { CreateAlbumInput } from './dto/create-album.input';
 
@@ -6,14 +6,17 @@ import { CreateAlbumInput } from './dto/create-album.input';
 import { Album } from './album.entity';
 import { User } from 'src/resources/user/user.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
+import { UseGuards } from '@nestjs/common';
+import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 
 @Resolver(() => Album)
 export class AlbumsResolver {
   constructor(private readonly albumsService: AlbumsService) {}
 
   @Mutation(() => Album)
-  createAlbum(@Args('createAlbumInput') createAlbumInput: CreateAlbumInput) {
-    return this.albumsService.create(createAlbumInput);
+  @UseGuards(AuthenticatedGuard)
+  createAlbum(@Args('createAlbumInput') createAlbumInput: CreateAlbumInput, @Context() context) {
+    return this.albumsService.create(context.req.user.id, createAlbumInput);
   }
 
   @Query(() => [Album], { description: "Get albums by ID" })

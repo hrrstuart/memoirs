@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField, Parent, Context } from '@nestjs/graphql';
 import { LikesService } from './likes.service';
 import { CreateLikeInput } from './dto/create-like.input';
 
@@ -12,8 +12,8 @@ export class LikesResolver {
   constructor(private readonly likesService: LikesService) {}
 
   @Mutation(() => Like)
-  createLike(@Args('createLikeInput') createLikeInput: CreateLikeInput) {
-    return this.likesService.create(createLikeInput);
+  createLike(@Args('createLikeInput') createLikeInput: CreateLikeInput, @Context() context) {
+    return this.likesService.create(context.req.user.id, createLikeInput);
   }
 
   @Query(() => [Like])

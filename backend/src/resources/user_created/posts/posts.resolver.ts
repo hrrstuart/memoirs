@@ -24,8 +24,8 @@ export class PostsResolver {
 
   @Mutation(returns => Post)
   @UseGuards(AuthenticatedGuard)
-  createPost(@Args('createPostInput') createPostInput: CreatePostInput, @Context() req): Promise<Post> {
-    return this.postsService.create(createPostInput);
+  createPost(@Args('createPostInput') createPostInput: CreatePostInput, @Context() context): Promise<Post> {
+    return this.postsService.create(context.req.user.id, createPostInput);
   }
 
   @ResolveField(returns => User)
