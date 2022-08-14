@@ -22,7 +22,7 @@ export class LikesResolver {
   }
 
   @Query(() => Like, { name: 'like' })
-  like(@Args('id', { type: () => String }) id: string) {
+  getLike(@Args('id', { type: () => String }) id: string) {
     return this.likesService.findOne(id);
   }
 

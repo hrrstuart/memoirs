@@ -24,7 +24,7 @@ export class CommentsResolver {
   }
 
   @Query(() => Comment)
-  comment(@Args('id', { type: () => String }) id: string) {
+  getComment(@Args('id', { type: () => String }) id: string) {
     return this.commentsService.findOne(id);
   }
 

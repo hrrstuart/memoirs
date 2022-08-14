@@ -13,7 +13,7 @@ export class PostsResolver {
   constructor(private readonly postsService: PostsService) {}
 
   @Query(returns => Post)
-  post(@Args('id', { type: () => String }) id: string): Promise<Post> {
+  getPost(@Args('id', { type: () => String }) id: string): Promise<Post> {
     return this.postsService.findOne(id);
   }
 

@@ -25,7 +25,7 @@ export class AlbumsResolver {
   }
 
   @Query(() => Album, { description: "Get album by ID" })
-  album(@Args('id', { type: () => String }) id: string) {
+  getAlbum(@Args('id', { type: () => String }) id: string) {
     return this.albumsService.findOne(id);
   }
 
