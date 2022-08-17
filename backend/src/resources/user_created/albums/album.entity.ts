@@ -1,7 +1,7 @@
 import { ObjectType, Field } from '@nestjs/graphql';
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 // Related entities
-import { User } from 'src/resources/user/user.entity';
+import { User } from 'src/resources/user_relations/user/user.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 
 @Entity()

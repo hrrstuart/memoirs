@@ -5,7 +5,7 @@ import { CreateLikeInput } from './dto/create-like.input';
 // Entities
 import { Like } from './like.entity';
 import { Post } from '../posts/post.entity';
-import { User } from 'src/resources/user/user.entity';
+import { User } from 'src/resources/user_relations/user/user.entity';
 
 @Resolver(() => Like)
 export class LikesResolver {

@@ -6,7 +6,7 @@ import { LikesResolver } from './likes.resolver';
 import { Like } from './like.entity';
 
 // Modules
-import { UserModule } from 'src/resources/user/user.module';
+import { UserModule } from 'src/resources/user_relations/user/user.module';
 import { PostsModule } from '../posts/posts.module';
 
 @Module({

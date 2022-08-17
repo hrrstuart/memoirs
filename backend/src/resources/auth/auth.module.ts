@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { AuthResolver } from './auth.resolver';
 import { LocalStrategy } from './local.strategy';
 import { PassportModule } from "@nestjs/passport"
-import { UserModule } from '../user/user.module';
+import { UserModule } from '../user_relations/user/user.module';
 import { SessionSerializer } from './session.serializer';
 
 @Module({

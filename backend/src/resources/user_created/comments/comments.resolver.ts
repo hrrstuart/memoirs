@@ -4,7 +4,7 @@ import { CreateCommentInput } from './dto/create-comment.input';
 
 // Entities
 import { Comment } from './comment.entity';
-import { User } from 'src/resources/user/user.entity';
+import { User } from 'src/resources/user_relations/user/user.entity';
 import { UseGuards } from '@nestjs/common';
 import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 

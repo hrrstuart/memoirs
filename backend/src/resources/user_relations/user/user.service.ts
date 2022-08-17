@@ -7,14 +7,14 @@ import { CreateUserInput } from './dto/create-user.input';
 
 // Services
 import { AlbumsService } from 'src/resources/user_created/albums/albums.service';
-import { CommentsService } from '../user_created/comments/comments.service';
-import { LikesService } from '../user_created/likes/likes.service';
+import { CommentsService } from '../../user_created/comments/comments.service';
+import { LikesService } from '../../user_created/likes/likes.service';
 import { PostsService } from 'src/resources/user_created/posts/posts.service';
 
 // Entities
 import { Album } from 'src/resources/user_created/albums/album.entity';
-import { Comment } from '../user_created/comments/comment.entity';
-import { Like } from '../user_created/likes/like.entity';
+import { Comment } from '../../user_created/comments/comment.entity';
+import { Like } from '../../user_created/likes/like.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
 

@@ -9,8 +9,8 @@ import { User } from './user.entity';
 // Modules
 import { PostsModule } from 'src/resources/user_created/posts/posts.module';
 import { AlbumsModule } from 'src/resources/user_created/albums/albums.module';
-import { CommentsModule } from '../user_created/comments/comments.module';
-import { LikesModule } from '../user_created/likes/likes.module';
+import { CommentsModule } from '../../user_created/comments/comments.module';
+import { LikesModule } from '../../user_created/likes/likes.module';
 
 @Module({
   imports: [

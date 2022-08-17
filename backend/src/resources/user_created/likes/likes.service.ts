@@ -2,7 +2,7 @@ import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { UserService } from 'src/resources/user/user.service';
+import { UserService } from 'src/resources/user_relations/user/user.service';
 import { PostsService } from '../posts/posts.service';
 import { CreateLikeInput } from './dto/create-like.input';
 

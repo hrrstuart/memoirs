@@ -5,7 +5,7 @@ import { AlbumsService } from './albums.service';
 import { AlbumsResolver } from './albums.resolver';
 
 // Modules
-import { UserModule } from 'src/resources/user/user.module';
+import { UserModule } from 'src/resources/user_relations/user/user.module';
 import { PostsModule } from 'src/resources/user_created/posts/posts.module';
 
 @Module({

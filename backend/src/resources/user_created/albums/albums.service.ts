@@ -5,12 +5,12 @@ import { CreateAlbumInput } from './dto/create-album.input';
 
 // Services
 import { PostsService } from 'src/resources/user_created/posts/posts.service';
-import { UserService } from 'src/resources/user/user.service';
+import { UserService } from 'src/resources/user_relations/user/user.service';
 
 // Entities
 import { Album } from './album.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
-import { User } from 'src/resources/user/user.entity';
+import { User } from 'src/resources/user_relations/user/user.entity';
 
 @Injectable()
 export class AlbumsService {

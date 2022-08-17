@@ -6,7 +6,7 @@ import { PostsService } from './posts.service';
 import { PostsResolver } from './posts.resolver';
 
 // Modules
-import { UserModule } from 'src/resources/user/user.module';
+import { UserModule } from 'src/resources/user_relations/user/user.module';
 import { CommentsModule } from '../comments/comments.module';
 import { LikesModule } from '../likes/likes.module';
 

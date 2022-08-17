@@ -2,7 +2,7 @@ import { Resolver, Query, Mutation, Args, Int, Parent, ResolveField, Context } f
 import { PostsService } from './posts.service';
 import { Post } from './post.entity';
 import { CreatePostInput } from './dto/create-post.input';
-import { User } from 'src/resources/user/user.entity';
+import { User } from 'src/resources/user_relations/user/user.entity';
 import { Comment } from '../comments/comment.entity';
 import { Like } from '../likes/like.entity';
 import { UseGuards } from '@nestjs/common';
