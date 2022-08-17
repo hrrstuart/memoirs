@@ -34,7 +34,7 @@ export class User {
 
   @OneToMany(() => Follow, (follow) => follow.follower)
   @Field(type => [Follow], { nullable: true })
-  following: Follow[];
+  follows?: Follow[];
 
   @Column({
     unique: true

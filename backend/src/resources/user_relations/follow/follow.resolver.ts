@@ -1,35 +1,38 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent, Context } from '@nestjs/graphql';
 import { FollowService } from './follow.service';
-import { Follow } from './entities/follow.entity';
+import { Follow } from './follow.entity';
 import { CreateFollowInput } from './dto/create-follow.input';
-import { UpdateFollowInput } from './dto/update-follow.input';
+import { User } from '../user/user.entity';
+import { UseGuards } from '@nestjs/common';
+import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 
 @Resolver(() => Follow)
 export class FollowResolver {
   constructor(private readonly followService: FollowService) {}
 
   @Mutation(() => Follow)
-  createFollow(@Args('createFollowInput') createFollowInput: CreateFollowInput) {
-    return this.followService.create(createFollowInput);
+  @UseGuards(AuthenticatedGuard)
+  createFollow(@Args('createFollowInput') createFollowInput: CreateFollowInput, @Context() context) {
+    return this.followService.create(createFollowInput, context.req.user.id);
   }
 
-  @Query(() => [Follow], { name: 'follow' })
-  findAll() {
+  @Query(() => [Follow])
+  follows() {
     return this.followService.findAll();
   }
 
-  @Query(() => Follow, { name: 'follow' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.followService.findOne(id);
+  @Query(() => Follow, { description: "Get all followers of either an album or user" })
+  findFollowers(@Args('id', { type: () => String }) id: string) {
+    return this.followService.findFollowers(id);
   }
 
-  @Mutation(() => Follow)
-  updateFollow(@Args('updateFollowInput') updateFollowInput: UpdateFollowInput) {
-    return this.followService.update(updateFollowInput.id, updateFollowInput);
+  @Query(() => [Follow], { description: "Find all users/albums a user is following" })
+  findFollowing(@Args('user_id', { type: () => String }) user_id: string) {
+    return this.followService.findFollowing(user_id)
   }
 
-  @Mutation(() => Follow)
-  removeFollow(@Args('id', { type: () => Int }) id: number) {
-    return this.followService.remove(id);
+  @ResolveField(returns => User)
+  follower(@Parent() follow: Follow): Promise<User> {
+    return this.followService.getFollower(follow.followerId);
   }
 }

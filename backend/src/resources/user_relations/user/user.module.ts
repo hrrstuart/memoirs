@@ -11,6 +11,7 @@ import { PostsModule } from 'src/resources/user_created/posts/posts.module';
 import { AlbumsModule } from 'src/resources/user_created/albums/albums.module';
 import { CommentsModule } from '../../user_created/comments/comments.module';
 import { LikesModule } from '../../user_created/likes/likes.module';
+import { FollowModule } from '../follow/follow.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { LikesModule } from '../../user_created/likes/likes.module';
     forwardRef(() => AlbumsModule),
     forwardRef(() => CommentsModule),
     forwardRef(() => LikesModule),
+    forwardRef(() => FollowModule),
   ],
   providers: [UserService, UserResolver],
   exports: [UserService]
