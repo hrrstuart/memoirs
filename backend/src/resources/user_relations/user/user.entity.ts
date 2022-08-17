@@ -6,6 +6,7 @@ import { Album } from 'src/resources/user_created/albums/album.entity';
 import { Comment } from '../../user_created/comments/comment.entity';
 import { Like } from '../../user_created/likes/like.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
+import { Follow } from '../follow/follow.entity';
 
 @Entity()
 @ObjectType()
@@ -30,6 +31,10 @@ export class User {
   @OneToMany(() => Like, (like) => like.user)
   @Field(type => [Like], { nullable: true })
   likes?: Like[];
+
+  @OneToMany(() => Follow, (follow) => follow.follower)
+  @Field(type => [Follow], { nullable: true })
+  following: Follow[];
 
   @Column({
     unique: true
