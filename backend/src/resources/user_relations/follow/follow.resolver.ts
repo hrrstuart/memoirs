@@ -21,8 +21,8 @@ export class FollowResolver {
     return this.followService.findAll();
   }
 
-  @Query(() => Follow, { description: "Get all followers of either an album or user" })
-  findFollowers(@Args('id', { type: () => String }) id: string) {
+  @Query(() => [Follow], { description: "Get all followers of either an album or user" })
+  findFollowers(@Args('id', { type: () => String }) id: string): Promise<Follow[]> {
     return this.followService.findFollowers(id);
   }
 

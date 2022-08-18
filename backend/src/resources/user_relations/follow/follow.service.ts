@@ -32,10 +32,10 @@ export class FollowService {
     })
   }
 
-  findFollowers(id: string) {
+  findFollowers(id: string): Promise<Follow[]> {
     return this.followRepository.findBy({
       followingId: id
-    })
+    });
   }
 
   getFollower(id: string) {
