@@ -5,6 +5,7 @@ import { AlbumMemberService } from './album-member.service';
 // Entities
 import { AlbumMember } from './album-member.entity';
 import { User } from '../user/user.entity';
+import { Album } from 'src/resources/user_created/albums/album.entity';
 
 @Resolver(of => AlbumMember)
 export class AlbumMemberResolver {
@@ -31,5 +32,10 @@ export class AlbumMemberResolver {
     @ResolveField(returns => [User])
     user(@Parent() albumMember: AlbumMember): Promise<User> {
       return this.albumMemberService.getUser(albumMember.userId);
+    }
+
+    @ResolveField(returns => [Album])
+    album(@Parent() albumMember: AlbumMember): Promise<Album> {
+      return this.albumMemberService.getAlbum(albumMember.albumId);
     }
 }
