@@ -7,12 +7,14 @@ import { AlbumsResolver } from './albums.resolver';
 // Modules
 import { UserModule } from 'src/resources/user_relations/user/user.module';
 import { PostsModule } from 'src/resources/user_created/posts/posts.module';
+import { AlbumMemberModule } from 'src/resources/user_relations/album_member/album-member.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Album]),
     forwardRef(() => UserModule),
-    forwardRef(() => PostsModule)
+    forwardRef(() => PostsModule),
+    forwardRef(() => AlbumMemberModule),
   ],
   providers: [AlbumsResolver, AlbumsService],
   exports: [AlbumsService]

@@ -11,13 +11,16 @@ import { UserService } from 'src/resources/user_relations/user/user.service';
 import { Album } from './album.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from 'src/resources/user_relations/user/user.entity';
+import { AlbumMember } from 'src/resources/user_relations/album_member/album-member.entity';
+import { AlbumMemberService } from 'src/resources/user_relations/album_member/album-member.service';
 
 @Injectable()
 export class AlbumsService {
     constructor(
         @InjectRepository(Album) private albumRepository: Repository<Album>,
         @Inject(forwardRef(() => UserService)) private userService: UserService,
-        @Inject(forwardRef(() => PostsService)) private postService: PostsService
+        @Inject(forwardRef(() => PostsService)) private postService: PostsService,
+        @Inject(forwardRef(() => AlbumMemberService)) private albumMemberService: AlbumMemberService,
     ) {}
 
     create(userID: string, createAlbumInput: CreateAlbumInput): Promise<Album> {
@@ -47,5 +50,9 @@ export class AlbumsService {
 
     getOwner(ownerId: string): Promise<User> {
         return this.userService.findOne("id", ownerId);
+    }
+
+    getAlbumMembers(albumId: string): Promise<AlbumMember[]> {
+        return this.albumMemberService.findMembersByAlbum(albumId);
     }
 }

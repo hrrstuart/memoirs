@@ -8,6 +8,7 @@ import { Comment } from '../../user_created/comments/comment.entity';
 import { Like } from '../../user_created/likes/like.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
+import { AlbumMember } from '../album_member/album-member.entity';
 
 @Resolver(of => User)
 export class UserResolver {
@@ -39,6 +40,11 @@ export class UserResolver {
     @ResolveField(returns => [Album])
     albums(@Parent() user: User): Promise<Album[]> {
       return this.userService.getAlbums(user.id);
+    }
+  
+    @ResolveField(returns => [AlbumMember])
+    albumMemberships(@Parent() user: User): Promise<AlbumMember[]> {
+      return this.userService.getAlbumMemberships(user.id);
     }
 
     @ResolveField(returns => [Comment])

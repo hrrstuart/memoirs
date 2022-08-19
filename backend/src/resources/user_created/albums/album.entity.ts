@@ -3,6 +3,7 @@ import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGenerate
 // Related entities
 import { User } from 'src/resources/user_relations/user/user.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
+import { AlbumMember } from 'src/resources/user_relations/album_member/album-member.entity';
 
 @Entity()
 @ObjectType()
@@ -19,6 +20,10 @@ export class Album {
   @UpdateDateColumn()
   @Field(type => Date)
   updated_at: Date;
+
+  @OneToMany(() => AlbumMember, (albumMember) => albumMember.album)
+  @Field(type => [AlbumMember])
+  members: AlbumMember;
 
   @Column()
   @Field()

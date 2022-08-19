@@ -12,6 +12,7 @@ import { AlbumsModule } from 'src/resources/user_created/albums/albums.module';
 import { CommentsModule } from '../../user_created/comments/comments.module';
 import { LikesModule } from '../../user_created/likes/likes.module';
 import { FollowModule } from '../follow/follow.module';
+import { AlbumMemberModule } from '../album_member/album-member.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { FollowModule } from '../follow/follow.module';
     forwardRef(() => CommentsModule),
     forwardRef(() => LikesModule),
     forwardRef(() => FollowModule),
+    forwardRef(() => AlbumMemberModule)
   ],
   providers: [UserService, UserResolver],
   exports: [UserService]

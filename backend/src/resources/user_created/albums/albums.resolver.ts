@@ -8,6 +8,7 @@ import { User } from 'src/resources/user_relations/user/user.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { UseGuards } from '@nestjs/common';
 import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
+import { AlbumMember } from 'src/resources/user_relations/album_member/album-member.entity';
 
 @Resolver(() => Album)
 export class AlbumsResolver {
@@ -31,7 +32,12 @@ export class AlbumsResolver {
 
   @ResolveField(returns => User)
   user(@Parent() album: Album): Promise<User> {
-    return this.albumsService.getOwner(album.userId)
+    return this.albumsService.getOwner(album.userId);
+  }
+
+  @ResolveField(returns => [AlbumMember])
+  albumMembers(@Parent() album: Album): Promise<AlbumMember[]> {
+    return this.albumsService.getAlbumMembers(album.id);
   }
 
   @ResolveField(returns => [Post])
