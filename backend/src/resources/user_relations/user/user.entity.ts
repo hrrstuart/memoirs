@@ -35,7 +35,7 @@ export class User {
 
   @OneToMany(() => Follow, (follow) => follow.follower)
   @Field(type => [Follow], { nullable: true })
-  follows?: Follow[];
+  following?: Follow[];
 
   @OneToMany(() => AlbumMember, (albumMember) => albumMember.user)
   @Field(type => [AlbumMember], { nullable: true })

@@ -9,6 +9,7 @@ import { Like } from '../../user_created/likes/like.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
 import { AlbumMember } from '../album_member/album-member.entity';
+import { Follow } from '../follow/follow.entity';
 
 @Resolver(of => User)
 export class UserResolver {
@@ -55,5 +56,10 @@ export class UserResolver {
     @ResolveField(returns => [Like])
     likes(@Parent() user: User): Promise<Like[]> {
       return this.userService.getLikes(user.id);
+    }
+  
+    @ResolveField(returns => [Follow])
+    following(@Parent() user: User): Promise<Follow[]> {
+      return this.userService.getFollowing(user.id);
     }
 }

@@ -19,6 +19,8 @@ import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
 import { AlbumMemberService } from '../album_member/album-member.service';
 import { AlbumMember } from '../album_member/album-member.entity';
+import { FollowService } from '../follow/follow.service';
+import { Follow } from '../follow/follow.entity';
 
 @Injectable()
 export class UserService {
@@ -29,6 +31,7 @@ export class UserService {
         @Inject(forwardRef(() => AlbumsService)) private albumsService: AlbumsService,
         @Inject(forwardRef(() => CommentsService)) private commentsService: CommentsService,
         @Inject(forwardRef(() => LikesService)) private likesService: LikesService,
+        @Inject(forwardRef(() => FollowService)) private followsService: FollowService,
     ) {}
 
     async createUser(createUserInput: CreateUserInput): Promise<User> {
@@ -71,5 +74,9 @@ export class UserService {
 
     getLikes(user_id: string): Promise<Like[]> {
         return this.likesService.findAllByOwner(user_id);
+    }
+
+    getFollowing(user_id: string): Promise<Follow[]> {
+        return this.followsService.findFollowing(user_id);
     }
 }

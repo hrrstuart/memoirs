@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserService } from '../user/user.service';
@@ -10,7 +10,7 @@ import { Follow } from './follow.entity';
 export class FollowService {
   constructor(
     @InjectRepository(Follow) private followRepository: Repository<Follow>,
-    @Inject(UserService) private userService: UserService
+    @Inject(forwardRef(() => UserService)) private userService: UserService
     ) {}
 
   create(createFollowInput: CreateFollowInput, followerId: string) {

@@ -26,7 +26,7 @@ export class Follow {
 	@Field()
 	followingId: string;
 
-	@ManyToOne(type => User, (user) => user.follows)
+	@ManyToOne(type => User, (user) => user.following)
 	@Field(type => User)
 	follower: User;
 

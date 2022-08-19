@@ -11,5 +11,6 @@ import { Follow } from './follow.entity';
     forwardRef(() => UserModule),
   ],
   providers: [FollowResolver, FollowService],
+  exports: [FollowService]
 })
 export class FollowModule {}
