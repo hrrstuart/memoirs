@@ -37,6 +37,10 @@ export class Album {
   @Field(type => [Post])
   posts: Post[];
 
+  @OneToMany(() => Post, (post) => post.referencedIn)
+  @Field(() => [Post])
+  referencedPosts: Post[];
+
   /* Information that describes album */
   @Column()
   @Field()

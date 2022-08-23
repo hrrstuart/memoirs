@@ -22,6 +22,10 @@ export class Post {
   @Field()
   userId: string;
 
+  @OneToMany(() => Album, (album) => album.referencedPosts)
+  @Field(() => [Album])
+  referencedIn: Album[];
+
   @Column()
   @Field()
   albumId: string;
