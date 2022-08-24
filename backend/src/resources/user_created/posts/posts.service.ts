@@ -36,8 +36,11 @@ export class PostsService {
     return this.postsRepository.find();
   }
 
-  findAllByAlbum(albumId: string) {
-    return this.postsRepository.findBy({ albumId })
+  async findAllByAlbum(albumId: string) {
+    return [
+      ...(await this.postsRepository.findBy({ albumId })),
+      ...(await this.postsRepository.createQueryBuilder("post").where("post.referencedIn like :albumId", { albumId }).getMany())
+    ];
   }
 
   findAllByOwner(user_id: string) {
