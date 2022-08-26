@@ -28,6 +28,12 @@ export class PostsResolver {
     return this.postsService.create(context.req.user.id, createPostInput);
   }
 
+  @Mutation(returns => Post)
+  @UseGuards(AuthenticatedGuard)
+  referencePostInAlbum(@Args('albumId') albumId: string, @Args('postId') postId: string, @Context() context): Promise<Post> {
+    return this.postsService.referencePostInAlbum(context.req.user.id, albumId, postId)
+  }
+
   @ResolveField(returns => User)
   user(@Parent() post: Post): Promise<User> {
     return this.postsService.getOwner(post.userId)
