@@ -6,6 +6,7 @@ import { UseGuards } from '@nestjs/common';
 import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 import { Post } from '../posts/post.entity';
 import { Album } from '../albums/album.entity';
+import { User } from 'src/resources/user_relations/user/user.entity';
 
 @Resolver(of => ReferencedPost)
 export class ReferencedPostsResolver {
@@ -35,5 +36,10 @@ export class ReferencedPostsResolver {
   @ResolveField(returns => Album)
   album(@Parent() referencedPost: ReferencedPost): Promise<Album> {
     return this.referencedPostsService.getAlbum(referencedPost.albumId);
+  }
+
+  @ResolveField(returns => User)
+  user(@Parent() referencedPost: ReferencedPost): Promise<User> {
+    return this.referencedPostsService.getUser(referencedPost.userId);
   }
 }

@@ -1,5 +1,7 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/resources/user_relations/user/user.entity';
+import { UserService } from 'src/resources/user_relations/user/user.service';
 import { Repository } from 'typeorm';
 import { Album } from '../albums/album.entity';
 import { AlbumsService } from '../albums/albums.service';
@@ -14,6 +16,7 @@ export class ReferencedPostsService {
     @InjectRepository(ReferencedPost) private referencedPostRepository: Repository<ReferencedPost>,
     @Inject(forwardRef(() => PostsService)) private postsService: PostsService,
     @Inject(forwardRef(() => AlbumsService)) private albumsService: AlbumsService,
+    @Inject(forwardRef(() => UserService)) private usersService: UserService
   ) {}
 
   findAll() {
@@ -47,5 +50,9 @@ export class ReferencedPostsService {
 
   getAlbum(albumId: string): Promise<Album> {
     return this.albumsService.findOne(albumId);
+  }
+
+  getUser(userId: string): Promise<User> {
+    return this.usersService.findOne("id", userId);
   }
 }
