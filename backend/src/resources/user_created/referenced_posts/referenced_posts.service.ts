@@ -22,6 +22,7 @@ export class ReferencedPostsService {
 
   create(createReferencedPostInput: CreateReferencedPostInput, userId: string) {
     const newReferencedPost = this.referencedPostRepository.create({
+      userId,
       ...createReferencedPostInput
     });
 
@@ -34,6 +35,10 @@ export class ReferencedPostsService {
 
   findAllByPost(postId: string): Promise<ReferencedPost[]> {
     return this.referencedPostRepository.findBy({ postId });
+  }
+
+  findAllByUser(userId: string): Promise<ReferencedPost[]> {
+    return this.referencedPostRepository.findBy({ userId });
   }
 
   getPost(postId: string): Promise<Post> {

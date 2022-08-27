@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Parent, ResolveField } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Parent, ResolveField, Context } from '@nestjs/graphql';
 import { ReferencedPostsService } from './referenced_posts.service';
 import { ReferencedPost } from './referenced_post.entity';
 import { CreateReferencedPostInput } from './dto/create-referenced_post.input';
@@ -18,8 +18,8 @@ export class ReferencedPostsResolver {
 
   @Mutation(() => ReferencedPost)
   @UseGuards(AuthenticatedGuard)
-  createReferencedPost(@Args('createReferencedPostInput') createReferencedPostInput: CreateReferencedPostInput): Promise<ReferencedPost> {
-    return this.referencedPostsService.create(createReferencedPostInput, '');
+  createReferencedPost(@Args('createReferencedPostInput') createReferencedPostInput: CreateReferencedPostInput, @Context() context): Promise<ReferencedPost> {
+    return this.referencedPostsService.create(createReferencedPostInput, context.req.user.id);
   }
 
   @Query(() => ReferencedPost, { name: 'referencedPost' })
