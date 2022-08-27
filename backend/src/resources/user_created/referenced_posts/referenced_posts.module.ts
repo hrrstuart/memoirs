@@ -4,11 +4,13 @@ import { ReferencedPostsResolver } from './referenced_posts.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ReferencedPost } from './referenced_post.entity';
 import { PostsModule } from '../posts/posts.module';
+import { AlbumsModule } from '../albums/albums.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([ReferencedPost]),
-    forwardRef(() => PostsModule)
+    forwardRef(() => PostsModule),
+    forwardRef(() => AlbumsModule),
   ],
   providers: [ReferencedPostsResolver, ReferencedPostsService],
   exports: [ReferencedPostsService]
