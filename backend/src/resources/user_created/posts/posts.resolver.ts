@@ -49,4 +49,9 @@ export class PostsResolver {
   likes(@Parent() post: Post): Promise<Like[]> {
     return this.postsService.getLikes(post.id)
   }
+
+  @ResolveField(returns => [ReferencedPost])
+  referenced(@Parent() post: Post): Promise<ReferencedPost[]> {
+    return this.postsService.getReferencedPosts(post.id);
+  }
 }

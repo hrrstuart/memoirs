@@ -70,4 +70,8 @@ export class PostsService {
   getLikes(post_id: string): Promise<Like[]> {
     return this.likesService.findParentLikes(post_id, "POST");
   }
+
+  getReferencedPosts(postId: string): Promise<ReferencedPost[]> {
+    return this.referencedPostsService.findAllByPost(postId);
+  }
 }

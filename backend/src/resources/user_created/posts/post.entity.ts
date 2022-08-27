@@ -6,6 +6,7 @@ import { Album } from 'src/resources/user_created/albums/album.entity';
 import { Comment } from '../comments/comment.entity';
 import { Like } from '../likes/like.entity';
 import { User } from 'src/resources/user_relations/user/user.entity';
+import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
 
 @Entity()
 @ObjectType()
@@ -22,9 +23,9 @@ export class Post {
   @Field()
   userId: string;
 
-  @OneToMany(() => Album, (album) => album.referencedPosts)
-  @Field(() => [Album])
-  referencedIn: Album[];
+  @OneToMany(() => ReferencedPost, (referencedPost) => referencedPost.post)
+  @Field(() => [ReferencedPost])
+  referenced: ReferencedPost[];
 
   @Column()
   @Field()
