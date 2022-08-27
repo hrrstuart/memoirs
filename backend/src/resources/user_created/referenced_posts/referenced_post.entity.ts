@@ -29,13 +29,13 @@ export class ReferencedPost {
   @Field()
   albumId: string;
 
-  // @Column()
-  // @Field()
-  // userId: string;
+  @Column()
+  @Field()
+  userId: string;
 
-  // @ManyToOne(type => User, (user) => user.referencedPosts)
-  // @Field(type => User)
-  // user: User;
+  @ManyToOne(type => User, (user) => user.referencedPosts)
+  @Field(type => User)
+  user: User;
 
   @ManyToOne(type => Album, (album) => album.referencedPosts)
   @Field(type => Album)
