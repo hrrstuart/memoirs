@@ -10,6 +10,7 @@ import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
 import { AlbumMember } from '../album_member/album-member.entity';
 import { Follow } from '../follow/follow.entity';
+import { ReferencedPost } from 'src/resources/user_created/referenced_posts/referenced_post.entity';
 
 @Resolver(of => User)
 export class UserResolver {
@@ -36,6 +37,11 @@ export class UserResolver {
     @ResolveField(returns => [Post])
     posts(@Parent() user: User): Promise<Post[]> {
       return this.userService.getPosts(user.id);
+    }
+  
+    @ResolveField(returns => [Post])
+    referencedPosts(@Parent() user: User): Promise<ReferencedPost[]> {
+      return this.userService.getReferencedPosts(user.id);
     }
 
     @ResolveField(returns => [Album])

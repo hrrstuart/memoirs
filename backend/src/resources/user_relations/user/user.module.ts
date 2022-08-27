@@ -13,16 +13,18 @@ import { CommentsModule } from '../../user_created/comments/comments.module';
 import { LikesModule } from '../../user_created/likes/likes.module';
 import { FollowModule } from '../follow/follow.module';
 import { AlbumMemberModule } from '../album_member/album-member.module';
+import { ReferencedPostsModule } from 'src/resources/user_created/referenced_posts/referenced_posts.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
-    forwardRef(() => PostsModule),
     forwardRef(() => AlbumsModule),
+    forwardRef(() => AlbumMemberModule),
     forwardRef(() => CommentsModule),
-    forwardRef(() => LikesModule),
     forwardRef(() => FollowModule),
-    forwardRef(() => AlbumMemberModule)
+    forwardRef(() => LikesModule),
+    forwardRef(() => PostsModule),
+    forwardRef(() => ReferencedPostsModule)
   ],
   providers: [UserService, UserResolver],
   exports: [UserService]

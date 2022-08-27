@@ -21,6 +21,8 @@ import { Follow } from '../follow/follow.entity';
 import { Like } from '../../user_created/likes/like.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
+import { ReferencedPostsService } from 'src/resources/user_created/referenced_posts/referenced_posts.service';
+import { ReferencedPost } from 'src/resources/user_created/referenced_posts/referenced_post.entity';
 
 @Injectable()
 export class UserService {
@@ -32,6 +34,7 @@ export class UserService {
         @Inject(forwardRef(() => CommentsService)) private commentsService: CommentsService,
         @Inject(forwardRef(() => LikesService)) private likesService: LikesService,
         @Inject(forwardRef(() => FollowService)) private followsService: FollowService,
+        @Inject(forwardRef(() => ReferencedPostsService)) private referencedPostsService: ReferencedPostsService,
     ) {}
 
     async createUser(createUserInput: CreateUserInput): Promise<User> {
@@ -58,6 +61,10 @@ export class UserService {
 
     getPosts(userId: string): Promise<Post[]> {
         return this.postService.findAllByOwner(userId);
+    }
+
+    getReferencedPosts(userId: string): Promise<ReferencedPost[]> {
+        return this.referencedPostsService.findAllByUser(userId);
     }
 
     getAlbumMemberships(userId: string): Promise<AlbumMember[]> {
