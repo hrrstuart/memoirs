@@ -9,10 +9,11 @@ import { UserService } from 'src/resources/user_relations/user/user.service';
 
 // Entities
 import { Album } from './album.entity';
-import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from 'src/resources/user_relations/user/user.entity';
 import { AlbumMember } from 'src/resources/user_relations/album_member/album-member.entity';
 import { AlbumMemberService } from 'src/resources/user_relations/album_member/album-member.service';
+import { Post } from '../posts/post.entity';
+import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
 
 @Injectable()
 export class AlbumsService {
@@ -44,8 +45,12 @@ export class AlbumsService {
         return this.albumRepository.findOneBy({ id });
     }
 
-    getPosts(album_id: string): Promise<Post[]> {
-        return this.postService.findAllByAlbum(album_id);
+    getPosts(albumId: string): Promise<Post[]> {
+        return this.postService.findOriginalPosts(albumId);
+    }
+
+    getReferencedPosts(albumId: string): Promise<ReferencedPost[]> {
+        return this.postService.findReferencedPosts(albumId);
     }
 
     getOwner(ownerId: string): Promise<User> {

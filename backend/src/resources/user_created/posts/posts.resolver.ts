@@ -7,6 +7,7 @@ import { Comment } from '../comments/comment.entity';
 import { Like } from '../likes/like.entity';
 import { UseGuards } from '@nestjs/common';
 import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
+import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
 
 @Resolver((of) => Post)
 export class PostsResolver {
@@ -30,8 +31,8 @@ export class PostsResolver {
 
   @Mutation(returns => Post)
   @UseGuards(AuthenticatedGuard)
-  referencePostInAlbum(@Args('albumId') albumId: string, @Args('postId') postId: string, @Context() context): Promise<Post> {
-    return this.postsService.referencePostInAlbum(context.req.user.id, albumId, postId)
+  referencePostInAlbum(@Args('albumId') albumId: string, @Args('postId') postId: string, @Context() context): Promise<ReferencedPost> {
+    return this.postsService.createReference(context.req.user.id, albumId, postId)
   }
 
   @ResolveField(returns => User)

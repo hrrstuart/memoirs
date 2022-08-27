@@ -4,6 +4,7 @@ import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGenerate
 import { User } from 'src/resources/user_relations/user/user.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { AlbumMember } from 'src/resources/user_relations/album_member/album-member.entity';
+import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
 
 @Entity()
 @ObjectType()
@@ -37,9 +38,9 @@ export class Album {
   @Field(type => [Post])
   posts: Post[];
 
-  @OneToMany(() => Post, (post) => post.referencedIn)
-  @Field(() => [Post])
-  referencedPosts: Post[];
+  @OneToMany(() => ReferencedPost, (referencedPost) => referencedPost.albumId)
+  @Field(() => [ReferencedPost])
+  referencedPosts: ReferencedPost[];
 
   /* Information that describes album */
   @Column()

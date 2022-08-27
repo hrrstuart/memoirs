@@ -13,6 +13,8 @@ import { Comment } from '../comments/comment.entity';
 import { Like } from '../likes/like.entity';
 import { Post } from './post.entity';
 import { User } from 'src/resources/user_relations/user/user.entity';
+import { ReferencedPostsService } from '../referenced_posts/referenced_posts.service';
+import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
 
 @Injectable()
 export class PostsService {
@@ -21,6 +23,7 @@ export class PostsService {
     @Inject(forwardRef(() => UserService)) private userService: UserService,
     @Inject(forwardRef(() => CommentsService)) private commentsService: CommentsService,
     @Inject(forwardRef(() => LikesService)) private likesService: LikesService,
+    @Inject(forwardRef(() => ReferencedPostsService)) private referencedPostsService: ReferencedPostsService
   ) {}
 
   create(userID: string, createPostInput: CreatePostInput) {
@@ -32,15 +35,20 @@ export class PostsService {
     return this.postsRepository.save(newPost);
   }
 
+  createReference(userId: string, albumId: string, postId: string) {
+    return this.referencedPostsService.create({ albumId, postId }, userId);
+  }
+
   findAll() {
     return this.postsRepository.find();
   }
 
-  async findAllByAlbum(albumId: string) {
-    return [
-      ...(await this.postsRepository.findBy({ albumId })),
-      ...(await this.postsRepository.createQueryBuilder("post").where("post.referencedIn like :albumId", { albumId }).getMany())
-    ];
+  async findOriginalPosts(albumId: string): Promise<Post[]> {
+    return this.postsRepository.findBy({ albumId });
+  }
+
+  findReferencedPosts(albumId: string): Promise<ReferencedPost[]> {
+    return this.referencedPostsService.findAllByAlbum(albumId);
   }
 
   findAllByOwner(user_id: string) {
