@@ -40,12 +40,12 @@ export class PostsResolver {
     return this.postsService.getOwner(post.userId)
   }
 
-  @ResolveField(returns => Comment)
+  @ResolveField(returns => [Comment])
   comments(@Parent() post: Post): Promise<Comment[]> {
     return this.postsService.getComments(post.id)
   }
 
-  @ResolveField(returns => Like)
+  @ResolveField(returns => [Like])
   likes(@Parent() post: Post): Promise<Like[]> {
     return this.postsService.getLikes(post.id)
   }
