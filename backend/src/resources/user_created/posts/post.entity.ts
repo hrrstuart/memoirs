@@ -4,7 +4,7 @@ import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGenerate
 // Entities
 import { Album } from 'src/resources/user_created/albums/album.entity';
 import { Comment } from '../comments/comment.entity';
-import { Like } from '../likes/like.entity';
+import { PostLike } from '../post_likes/postlike.entity';
 import { User } from 'src/resources/user_relations/user/user.entity';
 import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
 
@@ -50,6 +50,10 @@ export class Post {
   @OneToMany(() => Comment, (comment) => comment.post)
   @Field(() => [Comment])
   comments: Comment[];
+
+  @OneToMany(() => PostLike, (postLike) => postLike.post)
+  @Field(() => [PostLike])
+  likes: PostLike[];
 
   @Column()
   @Field()

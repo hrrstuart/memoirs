@@ -10,7 +10,7 @@ import { AlbumsService } from 'src/resources/user_created/albums/albums.service'
 import { AlbumMemberService } from '../album_member/album-member.service';
 import { CommentsService } from '../../user_created/comments/comments.service';
 import { FollowService } from '../follow/follow.service';
-import { LikesService } from '../../user_created/likes/likes.service';
+import { PostLikesService } from '../../user_created/post_likes/postlikes.service';
 import { PostsService } from 'src/resources/user_created/posts/posts.service';
 
 // Entities
@@ -18,7 +18,7 @@ import { Album } from 'src/resources/user_created/albums/album.entity';
 import { AlbumMember } from '../album_member/album-member.entity';
 import { Comment } from '../../user_created/comments/comment.entity';
 import { Follow } from '../follow/follow.entity';
-import { Like } from '../../user_created/likes/like.entity';
+import { PostLike } from '../../user_created/post_likes/postlike.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
 import { ReferencedPostsService } from 'src/resources/user_created/referenced_posts/referenced_posts.service';
@@ -32,7 +32,7 @@ export class UserService {
         @Inject(forwardRef(() => AlbumMemberService)) private albumMemberService: AlbumMemberService,
         @Inject(forwardRef(() => AlbumsService)) private albumsService: AlbumsService,
         @Inject(forwardRef(() => CommentsService)) private commentsService: CommentsService,
-        @Inject(forwardRef(() => LikesService)) private likesService: LikesService,
+        @Inject(forwardRef(() => PostLikesService)) private likesService: PostLikesService,
         @Inject(forwardRef(() => FollowService)) private followsService: FollowService,
         @Inject(forwardRef(() => ReferencedPostsService)) private referencedPostsService: ReferencedPostsService,
     ) {}
@@ -79,7 +79,7 @@ export class UserService {
         return this.commentsService.findAllByOwner(user_id);
     }
 
-    getLikes(user_id: string): Promise<Like[]> {
+    getLikes(user_id: string): Promise<PostLike[]> {
         return this.likesService.findAllByOwner(user_id);
     }
 

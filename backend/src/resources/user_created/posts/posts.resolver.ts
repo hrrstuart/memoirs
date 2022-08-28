@@ -4,7 +4,7 @@ import { Post } from './post.entity';
 import { CreatePostInput } from './dto/create-post.input';
 import { User } from 'src/resources/user_relations/user/user.entity';
 import { Comment } from '../comments/comment.entity';
-import { Like } from '../likes/like.entity';
+import { PostLike } from '../post_likes/postlike.entity';
 import { UseGuards } from '@nestjs/common';
 import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
@@ -45,8 +45,8 @@ export class PostsResolver {
     return this.postsService.getComments(post.id)
   }
 
-  @ResolveField(returns => [Like])
-  likes(@Parent() post: Post): Promise<Like[]> {
+  @ResolveField(returns => [PostLike])
+  likes(@Parent() post: Post): Promise<PostLike[]> {
     return this.postsService.getLikes(post.id)
   }
 

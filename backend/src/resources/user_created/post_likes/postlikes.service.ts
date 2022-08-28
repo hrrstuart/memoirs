@@ -7,13 +7,12 @@ import { PostsService } from '../posts/posts.service';
 import { CreateLikeInput } from './dto/create-like.input';
 
 // Entities
-import { Like } from './like.entity';
-import { LikeType } from './likes.enum';
+import { PostLike } from './postlike.entity';
 
 @Injectable()
-export class LikesService {
+export class PostLikesService {
   constructor(
-    @InjectRepository(Like) private likesRepository: Repository<Like>,
+    @InjectRepository(PostLike) private likesRepository: Repository<PostLike>,
     @Inject(forwardRef(() => UserService)) private usersService: UserService,
     @Inject(forwardRef(() => PostsService)) private postsService: PostsService,
   ) {}
@@ -35,8 +34,8 @@ export class LikesService {
     return this.likesRepository.findOneByOrFail({ id });
   }
 
-  findParentLikes(parentId: string, parentType: LikeType) {
-    return this.likesRepository.findBy({ parentId, parentType });
+  findParentLikes(postId: string) {
+    return this.likesRepository.findBy({ postId });
   }
 
   findAllByOwner(userId: string) {

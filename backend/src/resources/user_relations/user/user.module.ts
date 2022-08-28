@@ -10,7 +10,7 @@ import { User } from './user.entity';
 import { PostsModule } from 'src/resources/user_created/posts/posts.module';
 import { AlbumsModule } from 'src/resources/user_created/albums/albums.module';
 import { CommentsModule } from '../../user_created/comments/comments.module';
-import { LikesModule } from '../../user_created/likes/likes.module';
+import { PostLikesModule } from '../../user_created/post_likes/postlikes.module';
 import { FollowModule } from '../follow/follow.module';
 import { AlbumMemberModule } from '../album_member/album-member.module';
 import { ReferencedPostsModule } from 'src/resources/user_created/referenced_posts/referenced_posts.module';
@@ -22,7 +22,7 @@ import { ReferencedPostsModule } from 'src/resources/user_created/referenced_pos
     forwardRef(() => AlbumMemberModule),
     forwardRef(() => CommentsModule),
     forwardRef(() => FollowModule),
-    forwardRef(() => LikesModule),
+    forwardRef(() => PostLikesModule),
     forwardRef(() => PostsModule),
     forwardRef(() => ReferencedPostsModule)
   ],

@@ -8,7 +8,7 @@ import { PostsResolver } from './posts.resolver';
 // Modules
 import { UserModule } from 'src/resources/user_relations/user/user.module';
 import { CommentsModule } from '../comments/comments.module';
-import { LikesModule } from '../likes/likes.module';
+import { PostLikesModule } from '../post_likes/postlikes.module';
 import { ReferencedPostsModule } from '../referenced_posts/referenced_posts.module';
 
 @Module({
@@ -16,7 +16,7 @@ import { ReferencedPostsModule } from '../referenced_posts/referenced_posts.modu
     TypeOrmModule.forFeature([Post]),
     forwardRef(() => UserModule),
     forwardRef(() => CommentsModule),
-    forwardRef(() => LikesModule),
+    forwardRef(() => PostLikesModule),
     forwardRef(() => ReferencedPostsModule)
   ],
   providers: [PostsResolver, PostsService],

@@ -1,14 +1,9 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 // Entities
 import { Album } from 'src/resources/user_created/albums/album.entity';
-import { Comment } from '../../user_created/comments/comment.entity';
-import { Like } from '../../user_created/likes/like.entity';
-import { Post } from 'src/resources/user_created/posts/post.entity';
-import { Follow } from '../follow/follow.entity';
 import { User } from '../user/user.entity';
-import { cp } from 'fs';
 
 @Entity()
 @ObjectType()

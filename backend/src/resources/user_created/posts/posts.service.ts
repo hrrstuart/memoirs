@@ -5,17 +5,16 @@ import { CreatePostInput } from './dto/create-post.input';
 
 //Services
 import { CommentsService } from '../comments/comments.service';
-import { LikesService } from '../likes/likes.service';
+import { PostLikesService } from '../post_likes/postlikes.service';
 import { UserService } from 'src/resources/user_relations/user/user.service';
 
 // Entities
 import { Comment } from '../comments/comment.entity';
-import { Like } from '../likes/like.entity';
+import { PostLike } from '../post_likes/postlike.entity';
 import { Post } from './post.entity';
 import { User } from 'src/resources/user_relations/user/user.entity';
 import { ReferencedPostsService } from '../referenced_posts/referenced_posts.service';
 import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
-import { LikeType } from '../likes/likes.enum';
 
 @Injectable()
 export class PostsService {
@@ -23,7 +22,7 @@ export class PostsService {
     @InjectRepository(Post) private postsRepository: Repository<Post>,
     @Inject(forwardRef(() => UserService)) private userService: UserService,
     @Inject(forwardRef(() => CommentsService)) private commentsService: CommentsService,
-    @Inject(forwardRef(() => LikesService)) private likesService: LikesService,
+    @Inject(forwardRef(() => PostLikesService)) private likesService: PostLikesService,
     @Inject(forwardRef(() => ReferencedPostsService)) private referencedPostsService: ReferencedPostsService
   ) {}
 
@@ -64,12 +63,12 @@ export class PostsService {
     return this.userService.findOne("id", ownerId)
   }
 
-  getComments(post_id: string): Promise<Comment[]> {
-    return this.commentsService.findAllByPost(post_id);
+  getComments(postId: string): Promise<Comment[]> {
+    return this.commentsService.findAllByPost(postId);
   }
 
-  getLikes(post_id: string): Promise<Like[]> {
-    return this.likesService.findParentLikes(post_id, LikeType.POST);
+  getLikes(postId: string): Promise<PostLike[]> {
+    return this.likesService.findParentLikes(postId);
   }
 
   getReferencedPosts(postId: string): Promise<ReferencedPost[]> {

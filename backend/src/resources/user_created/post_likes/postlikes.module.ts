@@ -1,9 +1,9 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { LikesService } from './likes.service';
-import { LikesResolver } from './likes.resolver';
-import { Like } from './like.entity';
+import { PostLikesService } from './postlikes.service';
+import { LikesResolver } from './postlikes.resolver';
+import { PostLike } from './postlike.entity';
 
 // Modules
 import { UserModule } from 'src/resources/user_relations/user/user.module';
@@ -11,11 +11,11 @@ import { PostsModule } from '../posts/posts.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Like]),
+    TypeOrmModule.forFeature([PostLike]),
     forwardRef(() => UserModule),
     forwardRef(() => PostsModule)
   ],
-  providers: [LikesResolver, LikesService],
-  exports: [LikesService]
+  providers: [LikesResolver, PostLikesService],
+  exports: [PostLikesService]
 })
-export class LikesModule {}
+export class PostLikesModule {}

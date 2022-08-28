@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 // Entities
 import { Album } from 'src/resources/user_created/albums/album.entity';
 import { Comment } from '../../user_created/comments/comment.entity';
-import { Like } from '../../user_created/likes/like.entity';
+import { PostLike } from '../../user_created/post_likes/postlike.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
 import { AlbumMember } from '../album_member/album-member.entity';
@@ -59,8 +59,8 @@ export class UserResolver {
       return this.userService.getComments(user.id);
     }
   
-    @ResolveField(returns => [Like])
-    likes(@Parent() user: User): Promise<Like[]> {
+    @ResolveField(returns => [PostLike])
+    likes(@Parent() user: User): Promise<PostLike[]> {
       return this.userService.getLikes(user.id);
     }
   

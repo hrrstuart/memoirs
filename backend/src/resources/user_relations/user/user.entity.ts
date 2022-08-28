@@ -4,7 +4,7 @@ import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Up
 // Entities
 import { Album } from 'src/resources/user_created/albums/album.entity';
 import { Comment } from '../../user_created/comments/comment.entity';
-import { Like } from '../../user_created/likes/like.entity';
+import { PostLike } from '../../user_created/post_likes/postlike.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { Follow } from '../follow/follow.entity';
 import { AlbumMember } from '../album_member/album-member.entity';
@@ -34,9 +34,9 @@ export class User {
   @Field(type => [Comment], { nullable: true })
   comments?: Comment[];
 
-  @OneToMany(() => Like, (like) => like.user)
-  @Field(type => [Like], { nullable: true })
-  likes?: Like[];
+  @OneToMany(() => PostLike, (like) => like.user)
+  @Field(type => [PostLike], { nullable: true })
+  likes?: PostLike[];
 
   @OneToMany(() => Follow, (follow) => follow.follower)
   @Field(type => [Follow], { nullable: true })
