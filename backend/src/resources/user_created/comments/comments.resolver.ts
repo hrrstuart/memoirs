@@ -8,6 +8,7 @@ import { User } from 'src/resources/user_relations/user/user.entity';
 import { UseGuards } from '@nestjs/common';
 import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 import { Post } from '../posts/post.entity';
+import { CommentLike } from '../comment_likes/commentlike.entity';
 
 @Resolver(() => Comment)
 export class CommentsResolver {
@@ -37,6 +38,11 @@ export class CommentsResolver {
   @ResolveField(returns => User)
   user(@Parent() comment: Comment): Promise<User> {
     return this.commentsService.getOwner(comment.userId)
+  }
+
+  @ResolveField(returns => CommentLike)
+  likes(@Parent() comment: Comment): Promise<CommentLike[]> {
+    return this.commentsService.getLikes(comment.id);
   }
 
 }

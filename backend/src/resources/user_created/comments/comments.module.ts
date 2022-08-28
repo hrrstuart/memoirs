@@ -7,14 +7,14 @@ import { CommentsResolver } from './comments.resolver';
 // Modules
 import { UserModule } from 'src/resources/user_relations/user/user.module';
 import { PostsModule } from '../posts/posts.module';
-import { PostLikesModule } from '../post_likes/postlikes.module';
+import { CommentLikesModule } from '../comment_likes/commentlikes.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Comment]),
     forwardRef(() => UserModule),
     forwardRef(() => PostsModule),
-    forwardRef(() => PostLikesModule),
+    forwardRef(() => CommentLikesModule),
   ],
   providers: [CommentsResolver, CommentsService],
   exports: [CommentsService]
