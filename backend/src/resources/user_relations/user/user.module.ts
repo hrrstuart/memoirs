@@ -14,12 +14,14 @@ import { PostLikesModule } from '../../user_created/post_likes/postlikes.module'
 import { FollowModule } from '../user_follow/user_follow.module';
 import { AlbumMemberModule } from '../album_member/album-member.module';
 import { ReferencedPostsModule } from 'src/resources/user_created/referenced_posts/referenced_posts.module';
+import { AlbumFollowModule } from '../album_follow/album_follow.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
     forwardRef(() => AlbumsModule),
     forwardRef(() => AlbumMemberModule),
+    forwardRef(() => AlbumFollowModule),
     forwardRef(() => CommentsModule),
     forwardRef(() => FollowModule),
     forwardRef(() => PostLikesModule),

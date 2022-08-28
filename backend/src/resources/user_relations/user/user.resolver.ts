@@ -11,6 +11,7 @@ import { User } from './user.entity';
 import { AlbumMember } from '../album_member/album-member.entity';
 import { UserFollow } from '../user_follow/user_follow.entity';
 import { ReferencedPost } from 'src/resources/user_created/referenced_posts/referenced_post.entity';
+import { AlbumFollow } from '../album_follow/album_follow.entity';
 
 @Resolver(of => User)
 export class UserResolver {
@@ -72,5 +73,10 @@ export class UserResolver {
     @ResolveField(returns => [UserFollow])
     usersFollowing(@Parent() user: User): Promise<UserFollow[]> {
       return this.userService.getFollowing(user.id);
+    }
+  
+    @ResolveField(returns => [AlbumFollow])
+    albumsFollowing(@Parent() user: User): Promise<AlbumFollow[]> {
+      return this.userService.getAlbumsFollowing(user.id);
     }
 }

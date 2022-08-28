@@ -23,6 +23,8 @@ import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
 import { ReferencedPostsService } from 'src/resources/user_created/referenced_posts/referenced_posts.service';
 import { ReferencedPost } from 'src/resources/user_created/referenced_posts/referenced_post.entity';
+import { AlbumFollow } from '../album_follow/album_follow.entity';
+import { AlbumFollowService } from '../album_follow/album_follow.service';
 
 @Injectable()
 export class UserService {
@@ -33,7 +35,8 @@ export class UserService {
         @Inject(forwardRef(() => AlbumsService)) private albumsService: AlbumsService,
         @Inject(forwardRef(() => CommentsService)) private commentsService: CommentsService,
         @Inject(forwardRef(() => PostLikesService)) private likesService: PostLikesService,
-        @Inject(forwardRef(() => UserFollowService)) private followsService: UserFollowService,
+        @Inject(forwardRef(() => UserFollowService)) private userFollowsService: UserFollowService,
+        @Inject(forwardRef(() => AlbumFollowService)) private albumFollowsService: AlbumFollowService,
         @Inject(forwardRef(() => ReferencedPostsService)) private referencedPostsService: ReferencedPostsService,
     ) {}
 
@@ -84,10 +87,14 @@ export class UserService {
     }
 
     getFollowing(user_id: string): Promise<UserFollow[]> {
-        return this.followsService.findFollowing(user_id);
+        return this.userFollowsService.findFollowing(user_id);
     }
 
     getFollowers(userId: string): Promise<UserFollow[]> {
-        return this.followsService.findFollowers(userId);
+        return this.userFollowsService.findFollowers(userId);
+    }
+
+    getAlbumsFollowing(userId: string): Promise<AlbumFollow[]> {
+        return this.albumFollowsService.findAlbumsFollowing(userId);
     }
 }
