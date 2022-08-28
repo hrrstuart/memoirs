@@ -1,5 +1,5 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 // Entities
 import { Album } from 'src/resources/user_created/albums/album.entity';
@@ -14,6 +14,14 @@ export class Post {
   @PrimaryGeneratedColumn("uuid")
   @Field((type) => String)
   id: string;
+
+  @CreateDateColumn()
+  @Field(type => Date)
+  created_at: Date;
+
+  @UpdateDateColumn()
+  @Field(type => Date)
+  updated_at: Date;
 
   @Column({ nullable: true })
   @Field({ nullable: true })
