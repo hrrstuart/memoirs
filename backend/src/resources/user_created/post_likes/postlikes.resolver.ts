@@ -20,7 +20,7 @@ export class LikesResolver {
   }
 
   @Query(() => [PostLike])
-  likes() {
+  postLikes() {
     return this.likesService.findAll();
   }
 
