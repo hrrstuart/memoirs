@@ -26,7 +26,9 @@ export class Follow {
 	@Field()
 	followingId: string;
 
-	@ManyToOne(type => User, (user) => user.following)
+	@ManyToOne(type => User, (user) => user.following, {
+		onDelete: "CASCADE"
+	  })
 	@Field(type => User)
 	follower: User;
 

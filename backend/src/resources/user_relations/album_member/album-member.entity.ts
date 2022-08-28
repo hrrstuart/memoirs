@@ -25,11 +25,15 @@ export class AlbumMember {
   @Field(type => String)
   userId: string;
 
-  @ManyToOne(() => Album, (album) => album.members)
+  @ManyToOne(() => Album, (album) => album.members, {
+    onDelete: "CASCADE"
+  })
   @Field(type => Album)
   album: Album;
 
-  @ManyToOne(() => User, (user) => user.albumMemberships)
+  @ManyToOne(() => User, (user) => user.albumMemberships, {
+    onDelete: "CASCADE"
+  })
   @Field(type => User)
   user: User;
 

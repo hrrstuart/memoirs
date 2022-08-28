@@ -23,11 +23,15 @@ export class CommentLike {
   @Field()
   commentId: string;
 
-  @ManyToOne(() => User, (user) => user.likes)
+  @ManyToOne(() => User, (user) => user.likes, {
+    onDelete: "CASCADE"
+  })
   @Field(type => User)
   user: User;
 
-  @ManyToOne(() => Comment, (comment) => comment.likes)
+  @ManyToOne(() => Comment, (comment) => comment.likes, {
+    onDelete: "CASCADE"
+  })
   @Field(type => Comment)
   comment: Comment;
 

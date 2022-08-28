@@ -39,11 +39,15 @@ export class Post {
   @Field()
   albumId: string;
 
-  @ManyToOne(() => User, (user) => user.posts)
+  @ManyToOne(() => User, (user) => user.posts, {
+    onDelete: "CASCADE"
+  })
   @Field(() => User)
   user: User;
 
-  @ManyToOne(() => Album, (album) => album.posts)
+  @ManyToOne(() => Album, (album) => album.posts, {
+    onDelete: "CASCADE"
+  })
   @Field(() => Album)
   album: Album;
 

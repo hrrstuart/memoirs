@@ -37,11 +37,15 @@ export class ReferencedPost {
   @Field(type => User)
   user: User;
 
-  @ManyToOne(type => Album, (album) => album.referencedPosts)
+  @ManyToOne(type => Album, (album) => album.referencedPosts, {
+    onDelete: "CASCADE"
+  })
   @Field(type => Album)
   album: Album;
 
-  @ManyToOne(type => Post, (post) => post.referenced)
+  @ManyToOne(type => Post, (post) => post.referenced, {
+    onDelete: "CASCADE"
+  })
   @Field(type => Post)
   post: Post;
 

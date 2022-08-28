@@ -33,6 +33,10 @@ export class AlbumsService {
         return this.albumRepository.save(newAlbum);
     }
 
+    deleteAlbum(albumId: string) {
+        return this.albumRepository.delete({ id: albumId });
+    }
+
     findAll(): Promise<Album[]> {
         return this.albumRepository.find();
     }

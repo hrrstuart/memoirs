@@ -23,11 +23,15 @@ export class PostLike {
   @Field()
   postId: string;
 
-  @ManyToOne(() => User, (user) => user.likes)
+  @ManyToOne(() => User, (user) => user.likes, {
+    onDelete: "CASCADE"
+  })
   @Field(type => User)
   user: User;
 
-  @ManyToOne(() => Post, (post) => post.likes)
+  @ManyToOne(() => Post, (post) => post.likes, {
+    onDelete: "CASCADE"
+  })
   @Field(type => Post)
   post: Post;
 

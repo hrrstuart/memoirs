@@ -21,6 +21,11 @@ export class AlbumsResolver {
     return this.albumsService.create(context.req.user.id, createAlbumInput);
   }
 
+  @Mutation(returns => Boolean)
+  deleteAlbum(@Args('albumId') albumId: string) {
+    return this.albumsService.deleteAlbum(albumId);
+  }
+
   @Query(() => [Album], { description: "Get albums by ID" })
   albums() {
     return this.albumsService.findAll();
