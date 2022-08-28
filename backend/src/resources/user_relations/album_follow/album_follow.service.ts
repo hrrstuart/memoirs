@@ -2,7 +2,7 @@ import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserService } from '../user/user.service';
-import { CreateFollowAlbumInput } from './dto/create-album_follow.input';
+import { CreateAlbumFollowInput } from './dto/create-album_follow.input';
 import { AlbumFollow } from './album_follow.entity';
 import { AlbumsService } from 'src/resources/user_created/albums/albums.service';
 
@@ -14,7 +14,7 @@ export class AlbumFollowService {
     @Inject(forwardRef(() => AlbumsService)) private albumsService: AlbumsService
   ) {}
 
-  create(createFOllowAlbumInput: CreateFollowAlbumInput, followerId: string) {
+  create(createFOllowAlbumInput: CreateAlbumFollowInput, followerId: string) {
     const newFollow = this.followAlbumRepository.create({
       followerId,
       ...createFOllowAlbumInput

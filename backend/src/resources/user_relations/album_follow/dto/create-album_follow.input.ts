@@ -1,7 +1,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
-export class CreateFollowAlbumInput {
+export class CreateAlbumFollowInput {
 
   @Field()
   albumId: string;

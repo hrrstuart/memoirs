@@ -1,7 +1,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
-export class CreateFollowInput {
+export class CreateUserFollowInput {
 
   @Field()
   followingId: string;

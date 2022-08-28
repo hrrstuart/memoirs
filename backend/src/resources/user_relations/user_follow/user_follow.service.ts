@@ -2,7 +2,7 @@ import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserService } from '../user/user.service';
-import { CreateFollowInput } from './dto/create-user_follow.input';
+import { CreateUserFollowInput } from './dto/create-user_follow.input';
 import { UserFollow } from './user_follow.entity';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class UserFollowService {
     @Inject(forwardRef(() => UserService)) private userService: UserService
     ) {}
 
-  create(createFollowInput: CreateFollowInput, followerId: string) {
+  create(createFollowInput: CreateUserFollowInput, followerId: string) {
     const newFollow = this.userFollowRepository.create({
       followerId,
       ...createFollowInput

@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent, Context } from '@nestjs/graphql';
 import { UserFollowService } from './user_follow.service';
 import { UserFollow } from './user_follow.entity';
-import { CreateFollowInput } from './dto/create-user_follow.input';
+import { CreateUserFollowInput } from './dto/create-user_follow.input';
 import { User } from '../user/user.entity';
 import { UseGuards } from '@nestjs/common';
 import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
@@ -12,8 +12,8 @@ export class UserFollowResolver {
 
   @Mutation(() => UserFollow)
   @UseGuards(AuthenticatedGuard)
-  createFollow(@Args('createFollowInput') createFollowInput: CreateFollowInput, @Context() context) {
-    return this.userFollowService.create(createFollowInput, context.req.user.id);
+  createUserFollow(@Args('createUserFollowInput') createUserFollowInput: CreateUserFollowInput, @Context() context) {
+    return this.userFollowService.create(createUserFollowInput, context.req.user.id);
   }
 
   @Query(() => [UserFollow])

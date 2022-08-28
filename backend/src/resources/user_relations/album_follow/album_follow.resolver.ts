@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, ResolveField, Parent, Context } from '@nestjs/graphql';
 import { AlbumFollowService } from './album_follow.service';
-import { CreateFollowAlbumInput } from './dto/create-album_follow.input';
+import { CreateAlbumFollowInput } from './dto/create-album_follow.input';
 import { UseGuards } from '@nestjs/common';
 import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 
@@ -14,7 +14,7 @@ export class FollowResolver {
 
   @Mutation(() => AlbumFollow)
   @UseGuards(AuthenticatedGuard)
-  createFollow(@Args('createFollowInput') createFollowInput: CreateFollowAlbumInput, @Context() context) {
+  createAlbumFollow(@Args('createFollowInput') createFollowInput: CreateAlbumFollowInput, @Context() context) {
     return this.albumFollowService.create(createFollowInput, context.req.user.id);
   }
 
