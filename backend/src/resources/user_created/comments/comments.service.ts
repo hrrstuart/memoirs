@@ -6,6 +6,8 @@ import { Comment } from './comment.entity';
 import { CreateCommentInput } from './dto/create-comment.input';
 import { UserService } from 'src/resources/user_relations/user/user.service';
 import { PostsService } from '../posts/posts.service';
+import { LikesService } from '../likes/likes.service';
+import { LikeType } from '../likes/likes.enum';
 
 @Injectable()
 export class CommentsService {
@@ -13,7 +15,8 @@ export class CommentsService {
     @InjectRepository(Comment) private commentsRepository: Repository<Comment>,
     @Inject(forwardRef(() => UserService)) private userService: UserService,
     @Inject(forwardRef(() => PostsService)) private postsService: PostsService,
-    ) {}
+    @Inject(forwardRef(() => LikesService)) private likesService: LikesService
+  ) {}
 
   create(userId: string, createCommentInput: CreateCommentInput) {
     const newComment = this.commentsRepository.create({
@@ -40,11 +43,16 @@ export class CommentsService {
     return this.commentsRepository.findBy({ postId });
   }
 
-  getOwner(user_id: string) {
-    return this.userService.findOne("id", user_id);
+  getLikes(commentId: string) {
+    return this.likesService.findParentLikes(commentId, LikeType.COMMENT);
   }
 
   getPost(postId: string) {
     return this.postsService.findOne(postId);
   }
+
+  getOwner(user_id: string) {
+    return this.userService.findOne("id", user_id);
+  }
+
 }
