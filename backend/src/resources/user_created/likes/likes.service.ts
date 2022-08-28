@@ -34,8 +34,8 @@ export class LikesService {
     return this.likesRepository.findOneByOrFail({ id });
   }
 
-  findParentLikes(parent_id: string, parent_type: string) {
-    return this.likesRepository.findBy({ parent_id, parent_type })
+  findParentLikes(parentId: string, parent_type: string) {
+    return this.likesRepository.findBy({ parentId, parent_type })
   }
 
   findAllByOwner(userId: string) {

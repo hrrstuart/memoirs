@@ -33,6 +33,6 @@ export class LikesResolver {
 
   @ResolveField(returns => Post)
   post(@Parent() like: Like): Promise<Post> {
-    return this.likesService.getPost(like.parent_id);
+    return this.likesService.getPost(like.parentId);
   }
 }

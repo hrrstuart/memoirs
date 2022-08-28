@@ -21,7 +21,7 @@ export class Like {
 
   @Column()
   @Field()
-  parent_id: string;
+  parentId: string;
 
   @Column()
   @Field()
