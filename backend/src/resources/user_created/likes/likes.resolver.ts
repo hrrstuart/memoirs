@@ -6,12 +6,15 @@ import { CreateLikeInput } from './dto/create-like.input';
 import { Like } from './like.entity';
 import { Post } from '../posts/post.entity';
 import { User } from 'src/resources/user_relations/user/user.entity';
+import { UseGuards } from '@nestjs/common';
+import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 
 @Resolver(() => Like)
 export class LikesResolver {
   constructor(private readonly likesService: LikesService) {}
 
   @Mutation(() => Like)
+  @UseGuards(AuthenticatedGuard)
   createLike(@Args('createLikeInput') createLikeInput: CreateLikeInput, @Context() context) {
     return this.likesService.create(context.req.user.id, createLikeInput);
   }
