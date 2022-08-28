@@ -35,10 +35,8 @@ export class AlbumFollowService {
   }
 
   //  Find all followers of an album
-  findFollowers(id: string): Promise<AlbumFollow[]> {
-    return this.followAlbumRepository.findBy({
-      followingAlbumId: id
-    });
+  findFollowers(albumId: string): Promise<AlbumFollow[]> {
+    return this.followAlbumRepository.findBy({ albumId });
   }
 
   getFollower(id: string) {

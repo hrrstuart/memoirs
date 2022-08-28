@@ -42,6 +42,6 @@ export class FollowResolver {
 
   @ResolveField(returns => Album)
   album(@Parent() follow: AlbumFollow): Promise<Album> {
-    return this.albumFollowService.getFollowing(follow.followingAlbumId);
+    return this.albumFollowService.getFollowing(follow.albumId);
   }
 }

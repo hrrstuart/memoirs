@@ -41,11 +41,11 @@ export class Album {
   @Field(type => [Post])
   posts: Post[];
 
-  @OneToMany(type => AlbumFollow, albumFollow => albumFollow.followingAlbum)
+  @OneToMany(type => AlbumFollow, albumFollow => albumFollow.album)
   @Field(type => [AlbumFollow])
   followers: AlbumFollow[];
 
-  @OneToMany(() => ReferencedPost, (referencedPost) => referencedPost.albumId)
+  @OneToMany(() => ReferencedPost, (referencedPost) => referencedPost.album)
   @Field(() => [ReferencedPost])
   referencedPosts: ReferencedPost[];
 

@@ -25,9 +25,9 @@ export class AlbumFollow {
 
 	@Column()
 	@Field()
-	followingAlbumId: string;
+	albumId: string;
 
-	@ManyToOne(type => User, (user) => user.following, {
+	@ManyToOne(type => User, (user) => user.usersFollowing, {
 		onDelete: "CASCADE"
 	  })
 	@Field(type => User)
@@ -37,6 +37,6 @@ export class AlbumFollow {
 		onDelete: "CASCADE"
 	})
 	@Field(type => Album)
-	followingAlbum: Album;
+	album: Album;
 
 }
