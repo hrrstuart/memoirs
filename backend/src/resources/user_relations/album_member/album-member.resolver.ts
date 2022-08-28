@@ -6,6 +6,8 @@ import { AlbumMemberService } from './album-member.service';
 import { AlbumMember } from './album-member.entity';
 import { User } from '../user/user.entity';
 import { Album } from 'src/resources/user_created/albums/album.entity';
+import { UseGuards } from '@nestjs/common';
+import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 
 @Resolver(of => AlbumMember)
 export class AlbumMemberResolver {
@@ -24,6 +26,7 @@ export class AlbumMemberResolver {
     }
 
     @Mutation(returns => AlbumMember)
+    @UseGuards(AuthenticatedGuard)
     //  Guard that only admins/owner of album can add to group
     createAlbumMember(@Args('createAlbumMember') createAlbumMember: CreateAlbumMemberInput): Promise<AlbumMember> {
         return this.albumMemberService.createAlbumMember(createAlbumMember);
