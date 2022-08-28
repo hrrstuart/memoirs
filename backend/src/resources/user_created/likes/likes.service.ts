@@ -8,6 +8,7 @@ import { CreateLikeInput } from './dto/create-like.input';
 
 // Entities
 import { Like } from './like.entity';
+import { LikeType } from './likes.enum';
 
 @Injectable()
 export class LikesService {
@@ -34,8 +35,8 @@ export class LikesService {
     return this.likesRepository.findOneByOrFail({ id });
   }
 
-  findParentLikes(parentId: string, parent_type: string) {
-    return this.likesRepository.findBy({ parentId, parent_type })
+  findParentLikes(parentId: string, parentType: LikeType) {
+    return this.likesRepository.findBy({ parentId, parentType });
   }
 
   findAllByOwner(userId: string) {

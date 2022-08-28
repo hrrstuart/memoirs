@@ -51,10 +51,6 @@ export class Post {
   @Field(() => [Comment])
   comments: Comment[];
 
-  @OneToMany(() => Like, (like) => like.post)
-  @Field(() => [Like])
-  likes: Like[];
-
   @Column()
   @Field()
   image_url: string;

@@ -15,6 +15,7 @@ import { Post } from './post.entity';
 import { User } from 'src/resources/user_relations/user/user.entity';
 import { ReferencedPostsService } from '../referenced_posts/referenced_posts.service';
 import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
+import { LikeType } from '../likes/likes.enum';
 
 @Injectable()
 export class PostsService {
@@ -68,7 +69,7 @@ export class PostsService {
   }
 
   getLikes(post_id: string): Promise<Like[]> {
-    return this.likesService.findParentLikes(post_id, "POST");
+    return this.likesService.findParentLikes(post_id, LikeType.POST);
   }
 
   getReferencedPosts(postId: string): Promise<ReferencedPost[]> {

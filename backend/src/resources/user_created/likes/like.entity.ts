@@ -1,7 +1,8 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
 import { User } from 'src/resources/user_relations/user/user.entity';
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Post } from '../posts/post.entity';
+import { LikeType } from './likes.enum';
 
 @Entity()
 @ObjectType()
@@ -23,16 +24,19 @@ export class Like {
   @Field()
   parentId: string;
 
-  @Column()
-  @Field()
-  parent_type: string;
+  @Column({
+    type: "enum",
+    enum: LikeType
+  })
+  @Field(type => LikeType)
+  parentType: LikeType;
 
   @ManyToOne(() => User, (user) => user.likes)
   @Field(type => User)
   user: User;
 
-  @ManyToOne(() => Post, (post) => post.likes)
-  @Field(type => Post)
-  post: Post;
+  // @ManyToOne(() => Post, (post) => post.likes)
+  // @Field(type => Post)
+  // post: Post;
 
 }
