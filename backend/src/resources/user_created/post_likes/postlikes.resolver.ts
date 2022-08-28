@@ -3,7 +3,7 @@ import { PostLikesService } from './postlikes.service';
 import { CreateLikeInput } from './dto/create-like.input';
 
 // Entities
-import { PostLike } from './like.entity';
+import { PostLike } from './postlike.entity';
 import { Post } from '../posts/post.entity';
 import { User } from 'src/resources/user_relations/user/user.entity';
 import { UseGuards } from '@nestjs/common';
