@@ -2,7 +2,7 @@ import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { PostLikesService } from './postlikes.service';
-import { LikesResolver } from './postlikes.resolver';
+import { PostLikesResolver } from './postlikes.resolver';
 import { PostLike } from './postlike.entity';
 
 // Modules
@@ -15,7 +15,7 @@ import { PostsModule } from '../posts/posts.module';
     forwardRef(() => UserModule),
     forwardRef(() => PostsModule)
   ],
-  providers: [LikesResolver, PostLikesService],
+  providers: [PostLikesResolver, PostLikesService],
   exports: [PostLikesService]
 })
 export class PostLikesModule {}

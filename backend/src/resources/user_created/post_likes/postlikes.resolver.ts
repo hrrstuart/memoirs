@@ -10,7 +10,7 @@ import { UseGuards } from '@nestjs/common';
 import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
 
 @Resolver(() => PostLike)
-export class LikesResolver {
+export class PostLikesResolver {
   constructor(private readonly likesService: PostLikesService) {}
 
   @Mutation(() => PostLike)

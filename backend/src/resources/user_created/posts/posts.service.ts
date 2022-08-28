@@ -22,7 +22,7 @@ export class PostsService {
     @InjectRepository(Post) private postsRepository: Repository<Post>,
     @Inject(forwardRef(() => UserService)) private userService: UserService,
     @Inject(forwardRef(() => CommentsService)) private commentsService: CommentsService,
-    @Inject(forwardRef(() => PostLikesService)) private likesService: PostLikesService,
+    @Inject(forwardRef(() => PostLikesService)) private postLikesService: PostLikesService,
     @Inject(forwardRef(() => ReferencedPostsService)) private referencedPostsService: ReferencedPostsService
   ) {}
 
@@ -68,7 +68,7 @@ export class PostsService {
   }
 
   getLikes(postId: string): Promise<PostLike[]> {
-    return this.likesService.findParentLikes(postId);
+    return this.postLikesService.findParentLikes(postId);
   }
 
   getReferencedPosts(postId: string): Promise<ReferencedPost[]> {
