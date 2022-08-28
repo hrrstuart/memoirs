@@ -37,7 +37,7 @@ export class AlbumsResolver {
   }
 
   @ResolveField(returns => [AlbumMember])
-  albumMembers(@Parent() album: Album): Promise<AlbumMember[]> {
+  members(@Parent() album: Album): Promise<AlbumMember[]> {
     return this.albumsService.getAlbumMembers(album.id);
   }
 
