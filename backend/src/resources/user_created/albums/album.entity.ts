@@ -5,6 +5,7 @@ import { User } from 'src/resources/user_relations/user/user.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { AlbumMember } from 'src/resources/user_relations/album_member/album-member.entity';
 import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
+import { AlbumFollow } from 'src/resources/user_relations/album_follow/album_follow.entity';
 
 @Entity()
 @ObjectType()
@@ -39,6 +40,10 @@ export class Album {
   @OneToMany(type => Post, post => post.album)
   @Field(type => [Post])
   posts: Post[];
+
+  @OneToMany(type => AlbumFollow, albumFollow => albumFollow.followingAlbum)
+  @Field(type => [AlbumFollow])
+  followers: AlbumFollow[];
 
   @OneToMany(() => ReferencedPost, (referencedPost) => referencedPost.albumId)
   @Field(() => [ReferencedPost])

@@ -14,6 +14,8 @@ import { AlbumMember } from 'src/resources/user_relations/album_member/album-mem
 import { AlbumMemberService } from 'src/resources/user_relations/album_member/album-member.service';
 import { Post } from '../posts/post.entity';
 import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
+import { AlbumFollowService } from 'src/resources/user_relations/album_follow/album_follow.service';
+import { AlbumFollow } from 'src/resources/user_relations/album_follow/album_follow.entity';
 
 @Injectable()
 export class AlbumsService {
@@ -22,6 +24,7 @@ export class AlbumsService {
         @Inject(forwardRef(() => UserService)) private userService: UserService,
         @Inject(forwardRef(() => PostsService)) private postService: PostsService,
         @Inject(forwardRef(() => AlbumMemberService)) private albumMemberService: AlbumMemberService,
+        @Inject(forwardRef(() => AlbumFollowService)) private albumFollowsService: AlbumFollowService
     ) {}
 
     create(userID: string, createAlbumInput: CreateAlbumInput): Promise<Album> {
@@ -63,5 +66,9 @@ export class AlbumsService {
 
     getAlbumMembers(albumId: string): Promise<AlbumMember[]> {
         return this.albumMemberService.findMembersByAlbum(albumId);
+    }
+
+    getFollowers(albumId: string): Promise<AlbumFollow[]> {
+        return this.albumFollowsService.findFollowers(albumId);
     }
 }
