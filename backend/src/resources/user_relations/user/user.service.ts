@@ -86,4 +86,8 @@ export class UserService {
     getFollowing(user_id: string): Promise<UserFollow[]> {
         return this.followsService.findFollowing(user_id);
     }
+
+    getFollowers(userId: string): Promise<UserFollow[]> {
+        return this.followsService.findFollowers(userId);
+    }
 }
