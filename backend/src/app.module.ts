@@ -16,7 +16,7 @@ import { PostsModule } from './resources/user_created/posts/posts.module';
 import { AlbumsModule } from './resources/user_created/albums/albums.module';
 import { PostLikesModule } from "./resources/user_created/post_likes/postlikes.module";
 import { AuthModule } from "./resources/auth/auth.module";
-import { FollowModule } from "./resources/user_relations/follow/follow.module";
+import { FollowModule } from "./resources/user_relations/user_follow/user_follow.module";
 
 config({ path: join(process.cwd(), 'src/.env') })
 

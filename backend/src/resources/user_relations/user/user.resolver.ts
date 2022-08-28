@@ -9,7 +9,7 @@ import { PostLike } from '../../user_created/post_likes/postlike.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
 import { AlbumMember } from '../album_member/album-member.entity';
-import { Follow } from '../follow/follow.entity';
+import { UserFollow } from '../user_follow/user_follow.entity';
 import { ReferencedPost } from 'src/resources/user_created/referenced_posts/referenced_post.entity';
 
 @Resolver(of => User)
@@ -64,8 +64,8 @@ export class UserResolver {
       return this.userService.getLikes(user.id);
     }
   
-    @ResolveField(returns => [Follow])
-    following(@Parent() user: User): Promise<Follow[]> {
+    @ResolveField(returns => [UserFollow])
+    following(@Parent() user: User): Promise<UserFollow[]> {
       return this.userService.getFollowing(user.id);
     }
 }

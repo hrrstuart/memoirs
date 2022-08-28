@@ -4,7 +4,7 @@ import { User } from '../user/user.entity';
 
 @Entity()
 @ObjectType()
-export class Follow {
+export class UserFollow {
 
 	@PrimaryGeneratedColumn("uuid")
 	@Field()
@@ -31,5 +31,11 @@ export class Follow {
 	  })
 	@Field(type => User)
 	follower: User;
+
+	@ManyToOne(type => User, (user) => user.followers, {
+		onDelete: "CASCADE"
+	})
+	@Field(type => User)
+	following: User;
 
 }

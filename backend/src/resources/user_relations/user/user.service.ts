@@ -9,7 +9,7 @@ import { CreateUserInput } from './dto/create-user.input';
 import { AlbumsService } from 'src/resources/user_created/albums/albums.service';
 import { AlbumMemberService } from '../album_member/album-member.service';
 import { CommentsService } from '../../user_created/comments/comments.service';
-import { FollowService } from '../follow/follow.service';
+import { UserFollowService } from '../user_follow/user_follow.service';
 import { PostLikesService } from '../../user_created/post_likes/postlikes.service';
 import { PostsService } from 'src/resources/user_created/posts/posts.service';
 
@@ -17,7 +17,7 @@ import { PostsService } from 'src/resources/user_created/posts/posts.service';
 import { Album } from 'src/resources/user_created/albums/album.entity';
 import { AlbumMember } from '../album_member/album-member.entity';
 import { Comment } from '../../user_created/comments/comment.entity';
-import { Follow } from '../follow/follow.entity';
+import { UserFollow } from '../user_follow/user_follow.entity';
 import { PostLike } from '../../user_created/post_likes/postlike.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
 import { User } from './user.entity';
@@ -33,7 +33,7 @@ export class UserService {
         @Inject(forwardRef(() => AlbumsService)) private albumsService: AlbumsService,
         @Inject(forwardRef(() => CommentsService)) private commentsService: CommentsService,
         @Inject(forwardRef(() => PostLikesService)) private likesService: PostLikesService,
-        @Inject(forwardRef(() => FollowService)) private followsService: FollowService,
+        @Inject(forwardRef(() => UserFollowService)) private followsService: UserFollowService,
         @Inject(forwardRef(() => ReferencedPostsService)) private referencedPostsService: ReferencedPostsService,
     ) {}
 
@@ -83,7 +83,7 @@ export class UserService {
         return this.likesService.findAllByOwner(user_id);
     }
 
-    getFollowing(user_id: string): Promise<Follow[]> {
+    getFollowing(user_id: string): Promise<UserFollow[]> {
         return this.followsService.findFollowing(user_id);
     }
 }

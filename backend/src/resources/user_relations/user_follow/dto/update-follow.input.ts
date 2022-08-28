@@ -1,4 +1,4 @@
-import { CreateFollowInput } from './create-follow.input';
+import { CreateFollowInput } from './create-user_follow.input';
 import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 
 @InputType()

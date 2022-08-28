@@ -6,7 +6,7 @@ import { Album } from 'src/resources/user_created/albums/album.entity';
 import { Comment } from '../../user_created/comments/comment.entity';
 import { PostLike } from '../../user_created/post_likes/postlike.entity';
 import { Post } from 'src/resources/user_created/posts/post.entity';
-import { Follow } from '../follow/follow.entity';
+import { UserFollow } from '../user_follow/user_follow.entity';
 import { AlbumMember } from '../album_member/album-member.entity';
 import { ReferencedPost } from 'src/resources/user_created/referenced_posts/referenced_post.entity';
 
@@ -38,9 +38,13 @@ export class User {
   @Field(type => [PostLike], { nullable: true })
   likes?: PostLike[];
 
-  @OneToMany(() => Follow, (follow) => follow.follower)
-  @Field(type => [Follow], { nullable: true })
-  following?: Follow[];
+  @OneToMany(() => UserFollow, (follow) => follow.following)
+  @Field(type => [UserFollow], { nullable: true })
+  followers?: UserFollow[];
+
+  @OneToMany(() => UserFollow, (follow) => follow.follower)
+  @Field(type => [UserFollow], { nullable: true })
+  following?: UserFollow[];
 
   @OneToMany(() => AlbumMember, (albumMember) => albumMember.user)
   @Field(type => [AlbumMember], { nullable: true })

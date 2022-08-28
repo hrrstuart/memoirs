@@ -19,18 +19,20 @@ export class FollowResolver {
   }
 
   @Query(() => [AlbumFollow])
-  follows() {
+  albumFollows() {
     return this.albumFollowService.findAll();
   }
 
-  @Query(() => [AlbumFollow], { description: "Get all followers of either an album or user" })
-  findFollowers(@Args('id', { type: () => String }) id: string): Promise<AlbumFollow[]> {
-    return this.albumFollowService.findFollowers(id);
+  //  Find followers of an album
+  @Query(() => [AlbumFollow])
+  findAlbumFollowers(@Args('albumId', { type: () => String }) albumId: string): Promise<AlbumFollow[]> {
+    return this.albumFollowService.findFollowers(albumId);
   }
 
-  @Query(() => [AlbumFollow], { description: "Find all users/albums a user is following" })
-  findFollowing(@Args('user_id', { type: () => String }) user_id: string) {
-    return this.albumFollowService.findAlbumsFollowing(user_id)
+  //  Find albums a user is following
+  @Query(() => [AlbumFollow])
+  findAlbumFollowing(@Args('userId', { type: () => String }) userId: string) {
+    return this.albumFollowService.findAlbumsFollowing(userId)
   }
 
   @ResolveField(returns => User)

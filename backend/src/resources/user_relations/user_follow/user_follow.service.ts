@@ -2,42 +2,42 @@ import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserService } from '../user/user.service';
-import { CreateFollowInput } from './dto/create-follow.input';
-import { Follow } from './follow.entity';
+import { CreateFollowInput } from './dto/create-user_follow.input';
+import { UserFollow } from './user_follow.entity';
 
 @Injectable()
-export class FollowService {
+export class UserFollowService {
   constructor(
-    @InjectRepository(Follow) private followRepository: Repository<Follow>,
+    @InjectRepository(UserFollow) private userFollowRepository: Repository<UserFollow>,
     @Inject(forwardRef(() => UserService)) private userService: UserService
     ) {}
 
   create(createFollowInput: CreateFollowInput, followerId: string) {
-    const newFollow = this.followRepository.create({
+    const newFollow = this.userFollowRepository.create({
       followerId,
       ...createFollowInput
     });
 
-    return this.followRepository.save(newFollow);
+    return this.userFollowRepository.save(newFollow);
   }
 
   findAll() {
-    return `This action returns all follow`;
+    return this.userFollowRepository.find();
   }
 
   findFollowing(user_id: string) {
-    return this.followRepository.findBy({
+    return this.userFollowRepository.findBy({
       followerId: user_id
     })
   }
 
-  findFollowers(id: string): Promise<Follow[]> {
-    return this.followRepository.findBy({
+  findFollowers(id: string): Promise<UserFollow[]> {
+    return this.userFollowRepository.findBy({
       followingId: id
     });
   }
 
-  getFollower(id: string) {
+  getUser(id: string) {
     return this.userService.findOne("id", id);
   }
 }
