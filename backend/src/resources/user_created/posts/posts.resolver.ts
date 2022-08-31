@@ -1,13 +1,17 @@
-import { Resolver, Query, Mutation, Args, Int, Parent, ResolveField, Context } from '@nestjs/graphql';
-import { PostsService } from './posts.service';
-import { Post } from './post.entity';
-import { CreatePostInput } from './dto/create-post.input';
-import { User } from 'src/resources/user_relations/user/user.entity';
-import { Comment } from '../comments/comment.entity';
-import { PostLike } from '../post_likes/postlike.entity';
+import { Resolver, Query, Mutation, Args, Parent, ResolveField, Context } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
+import { createWriteStream } from 'fs';
+
 import { AuthenticatedGuard } from 'src/resources/auth/guards/authenticated.guard';
+import { CreatePostInput } from './dto/create-post.input';
+import { PostsService } from './posts.service';
+
+// Entities
+import { Comment } from '../comments/comment.entity';
+import { Post } from './post.entity';
+import { PostLike } from '../post_likes/postlike.entity';
 import { ReferencedPost } from '../referenced_posts/referenced_post.entity';
+import { User } from 'src/resources/user_relations/user/user.entity';
 
 @Resolver((of) => Post)
 export class PostsResolver {
@@ -25,7 +29,13 @@ export class PostsResolver {
 
   @Mutation(returns => Post)
   @UseGuards(AuthenticatedGuard)
-  createPost(@Args('createPostInput') createPostInput: CreatePostInput, @Context() context): Promise<Post> {
+  createPost(
+    @Args('createPostInput') createPostInput: CreatePostInput,
+    @Context() context
+  ): Promise<Post> {
+    // createPostInput.file.createReadStream()
+    //   .pipe(createWriteStream(`images/${createPostInput.albumId}/${createPostInput.file.filename}`));
+
     return this.postsService.create(context.req.user.id, createPostInput);
   }
 
