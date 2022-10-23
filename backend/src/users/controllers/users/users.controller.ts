@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Post, Req, Res, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CreateUserDto } from 'src/users/dtos/CreateUser.dto';
 import { UsersService } from 'src/users/services/users/users/users.service';
 
@@ -20,6 +20,7 @@ export class UsersController {
     }
 
     @Post('create')
+    @UsePipes(ValidationPipe)
     createUser(@Body() createUserDto: CreateUserDto) {
         this.usersService.createUser(createUserDto);
     }
