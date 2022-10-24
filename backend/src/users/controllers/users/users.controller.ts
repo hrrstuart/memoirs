@@ -13,7 +13,7 @@ export class UsersController {
     }
 
     @UseInterceptors(ClassSerializerInterceptor)
-    @Get('/search/:username')
+    @Get('/username/:username')
     getUser(@Param('username') username: string) {
         const user = this.usersService.findUserByUsername(username);
 
