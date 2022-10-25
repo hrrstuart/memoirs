@@ -13,7 +13,7 @@ export class UsersController {
     }
 
     @UseInterceptors(ClassSerializerInterceptor)
-    @Get('/username/:username')
+    @Get('username/:username')
     getUser(@Param('username') username: string) {
         const user = this.usersService.findUserByUsername(username);
 
@@ -24,7 +24,7 @@ export class UsersController {
     @Post('create')
     @UsePipes(ValidationPipe)
     createUser(@Body() createUserDto: CreateUserDto) {
-        this.usersService.createUser(createUserDto);
+        return this.usersService.createUser(createUserDto);
     }
 
 }
