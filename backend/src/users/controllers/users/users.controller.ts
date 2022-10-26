@@ -21,10 +21,12 @@ export class UsersController {
         else throw new HttpException('User not found', HttpStatus.BAD_REQUEST)
     }
 
+    @UseInterceptors(ClassSerializerInterceptor)
     @Post('create')
     @UsePipes(ValidationPipe)
-    createUser(@Body() createUserDto: CreateUserDto) {
-        return this.usersService.createUser(createUserDto);
+    async createUser(@Body() createUserDto: CreateUserDto) {
+        const newUser = await this.usersService.createUser(createUserDto);
+        return new SerializedUser(newUser);
     }
 
 }
