@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, BeforeInsert } from "typeorm";
-import bcrypt from "bcrypt";
+import * as bcrypt from "bcrypt";
 
 @Entity()
 export class User {
@@ -13,10 +13,10 @@ export class User {
     @UpdateDateColumn()
     updated_at: number;
 
-    @Column({ nullable: false })
+    @Column({ nullable: false, unique: true })
     username: string;
 
-    @Column()
+    @Column({ unique: true })
     email: string;
 
     @Column({ nullable: false })
