@@ -1,17 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, BeforeInsert } from "typeorm";
+import { Entity, Column, BeforeInsert } from "typeorm";
 import * as bcrypt from "bcrypt";
+import { BasicEntity } from "./BasicEntity";
 
 @Entity()
-export class User {
-
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
-
-    @CreateDateColumn()
-    created_at: number;
-
-    @UpdateDateColumn()
-    updated_at: number;
+export class User extends BasicEntity {
 
     @Column({ nullable: false, unique: true })
     username: string;
