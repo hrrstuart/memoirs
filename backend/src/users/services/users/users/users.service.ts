@@ -27,7 +27,7 @@ export class UsersService {
     }
 
     findUserByUsername(username: string) {
-        return this.users.find(u => u.username === username);
+        return this.userRepository.findOneBy({ username })
     }
 
     createUser(userDto: CreateUserDto) {
