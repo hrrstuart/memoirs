@@ -8,22 +8,10 @@ import { SerializedUser, User as IUser } from 'src/users/types';
 
 @Injectable()
 export class UsersService {
-    private users: IUser[] = [{
-        id: 'a',
-        email: 'rr@gmail.com',
-        username: 'rr',
-        password: 'asd'
-    }, {
-        id: 'b',
-        email: 'hrrstuart@gmail.com',
-        username: 'hrrstuart',
-        password: 'asd'
-    }];
-
     constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {}
 
-    getAllUsers() {
-        return this.users.map(u => plainToClass(SerializedUser, u));
+    async getAllUsers() {
+        return (await this.userRepository.find()).map(u => plainToClass(SerializedUser, u));
     }
 
     findUserByUsername(username: string) {
