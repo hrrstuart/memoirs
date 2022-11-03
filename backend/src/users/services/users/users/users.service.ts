@@ -30,6 +30,10 @@ export class UsersService {
         return this.userRepository.findOneBy({ username })
     }
 
+    findUserById(id: string) {
+        return this.userRepository.findOneBy({ id })
+    }
+
     createUser(userDto: CreateUserDto) {
         const user = this.userRepository.create(userDto);
         return this.userRepository.save(user);
