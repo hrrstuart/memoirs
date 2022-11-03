@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from 'dotenv';
 import { join } from 'path';
+import { PassportModule } from '@nestjs/passport';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -22,6 +23,9 @@ config({ path: join(process.cwd(), 'src/.env') })
       password: process.env.MYSQL_PASSWORD,
       synchronize: true,
       entities
+    }),
+    PassportModule.register({
+      session: true
     }),
     AuthModule,
     UsersModule
