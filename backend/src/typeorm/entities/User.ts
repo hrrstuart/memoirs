@@ -1,6 +1,7 @@
-import { Entity, Column, BeforeInsert } from "typeorm";
+import { Entity, Column, BeforeInsert, OneToMany } from "typeorm";
 import * as bcrypt from "bcrypt";
 import { BasicEntity } from "./BasicEntity";
+import { Album } from "./Album";
 
 @Entity()
 export class User extends BasicEntity {
@@ -22,5 +23,8 @@ export class User extends BasicEntity {
             this.password = hash;
         }
     }
+
+    @OneToMany(() => Album, (album) => album.owner)
+    albums: Album[];
 
 }
