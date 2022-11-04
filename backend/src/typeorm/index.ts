@@ -1,5 +1,5 @@
-import { SessionEntity } from "./Session";
-import { User } from "./User";
+import { SessionEntity } from "./entities/Session";
+import { User } from "./entities/User";
 
 export { User, SessionEntity };
 
