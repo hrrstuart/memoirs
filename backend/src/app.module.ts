@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 import entities from './typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { AlbumsModule } from './albums/albums.module';
 
 config({ path: join(process.cwd(), 'src/.env') })
 
@@ -28,7 +29,8 @@ config({ path: join(process.cwd(), 'src/.env') })
       session: true
     }),
     AuthModule,
-    UsersModule
+    UsersModule,
+    AlbumsModule
   ],
   controllers: [AppController],
   providers: [AppService],
