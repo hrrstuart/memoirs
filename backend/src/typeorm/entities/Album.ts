@@ -1,6 +1,6 @@
-import { Entity, Column, BeforeInsert, ManyToOne } from "typeorm";
-import * as bcrypt from "bcrypt";
+import { Entity, Column, ManyToOne, OneToMany } from "typeorm";
 import { BasicEntity } from "./BasicEntity";
+import { Post } from "./Post";
 import { User } from "./User";
 
 @Entity()
@@ -14,5 +14,8 @@ export class Album extends BasicEntity {
 
     @ManyToOne(() => User, (user) => user.albums)
     owner: User;
+
+    @OneToMany(() => Post, (post) => post.album)
+    posts: Post[]
 
 }
