@@ -8,8 +8,12 @@ import { Repository } from 'typeorm';
 export class AlbumsService {
     constructor(@InjectRepository(AlbumEntity) private readonly albumRepository: Repository<AlbumEntity>) {}
 
-    async getAlbums() {
+    getAlbums() {
         return this.albumRepository.find();
+    }
+
+    async getAlbumById(id: string): Promise<AlbumEntity> {
+        return this.albumRepository.findOne({ where: { id }, relations: ['owner'] });
     }
 
     async createAlbum(albumDto: CreateAlbumDto, user: User) {
@@ -18,5 +22,9 @@ export class AlbumsService {
             ...albumDto
         });
         return this.albumRepository.save(album);
+    }
+
+    deleteAlbum(albumId: string) {
+        return this.albumRepository.delete({ id: albumId })
     }
 }

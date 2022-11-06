@@ -1,6 +1,8 @@
-import { Body, ClassSerializerInterceptor, Controller, Get, Post, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CreateAlbumDto } from 'src/albums/dtos/CreateAlbum.dto';
+import { DeleteAlbumDto } from 'src/albums/dtos/DeleteAlbum.dto';
 import { AlbumsService } from 'src/albums/services/albums/albums.service';
+import { IsAdminGuard } from 'src/albums/utils/IsAdminGuard';
 import { AuthenticatedGuard } from 'src/auth/utils/LocalGuard';
 import { Album, User } from 'src/typeorm';
 import { AuthUser } from 'src/utils/decorators';
@@ -22,5 +24,15 @@ export class AlbumsController {
     async createAlbum(@AuthUser() user: User, @Body() createAlbumDto: CreateAlbumDto): Promise<Album> {
         const newAlbum = await this.albumsService.createAlbum(createAlbumDto, user);
         return newAlbum;
+    }
+
+    
+    @UseGuards(AuthenticatedGuard)
+    @UseGuards(IsAdminGuard)
+    @UseInterceptors(ClassSerializerInterceptor)
+    @Delete('delete')
+    @UsePipes(ValidationPipe)
+    async deleteAlbum(@Body() deleteAlbumDto: DeleteAlbumDto) {
+        return await this.albumsService.deleteAlbum(deleteAlbumDto.albumId);
     }
 }
