@@ -14,6 +14,7 @@ export class Post extends BasicEntity {
   @Column()
   image_url: string;
 
+  /*  Relations  */
   @ManyToOne(() => User, (user) => user.posts, {
     onDelete: "CASCADE"
   })
