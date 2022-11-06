@@ -12,7 +12,6 @@ export class AlbumsController {
     @Get('')
     getAlbums() {
         const albums = this.albumsService.getAlbums();
-        albums.then(a => console.log(a.map(al => al.owner)))
         return albums;
     }
 
