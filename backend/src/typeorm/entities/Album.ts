@@ -9,7 +9,7 @@ export class Album extends BasicEntity {
     @Column({ type: "varchar", length: 15 })
     title: string;
 
-    @Column({ type: "varchar", length: 155 })
+    @Column({ type: "varchar", length: 155, nullable: true })
     description: string;
 
     @ManyToOne(() => User, (user) => user.albums)
