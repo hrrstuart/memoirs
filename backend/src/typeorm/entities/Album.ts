@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, OneToMany } from "typeorm";
+import { Entity, Column, ManyToOne, OneToMany, JoinColumn } from "typeorm";
 import { BasicEntity } from "./BasicEntity";
 import { Post } from "./Post";
 import { User } from "./User";
@@ -12,7 +12,9 @@ export class Album extends BasicEntity {
     @Column({ type: "varchar", length: 155, nullable: true })
     description: string;
 
-    @ManyToOne(() => User, (user) => user.albums)
+    @ManyToOne(() => User, (user) => user.albums, {
+        onDelete: "CASCADE",
+    })
     owner: User;
 
     @OneToMany(() => Post, (post) => post.album)
