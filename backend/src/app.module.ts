@@ -7,10 +7,10 @@ import { PassportModule } from '@nestjs/passport';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import entities from './typeorm';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
-import { AlbumsModule } from './albums/albums.module';
-import { PostsModule } from './posts/posts.module';
+import { UsersModule } from './resources/users/users.module';
+import { AuthModule } from './resources/auth/auth.module';
+import { AlbumsModule } from './resources/albums/albums.module';
+import { PostsModule } from './resources/posts/posts.module';
 config({ path: join(process.cwd(), 'src/.env') })
 
 @Module({
