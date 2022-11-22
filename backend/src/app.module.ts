@@ -10,10 +10,7 @@ import entities from './typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { AlbumsModule } from './albums/albums.module';
-import { PostsController } from './posts/controllers/posts/posts.controller';
-import { PostsService } from './posts/services/posts/posts.service';
 import { PostsModule } from './posts/posts.module';
-
 config({ path: join(process.cwd(), 'src/.env') })
 
 @Module({

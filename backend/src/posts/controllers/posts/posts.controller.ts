@@ -1,4 +1,5 @@
-import { Body, ClassSerializerInterceptor, Controller, Get, Post, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Get, Post, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthenticatedGuard } from 'src/auth/utils/LocalGuard';
 import { CreatePostDto } from 'src/posts/dtos/CreatePost.dto';
 import { PostsService } from 'src/posts/services/posts/posts.service';
@@ -16,11 +17,15 @@ export class PostsController {
 
     @UseGuards(AuthenticatedGuard)
     @UseInterceptors(ClassSerializerInterceptor)
+    @UseInterceptors(FileInterceptor('file'))
     @Post('create')
-    @UsePipes(ValidationPipe)
-    async createPost(@AuthUser() user: User, @Body() createPostDto: CreatePostDto): Promise<PostEntity> {
-        console.log(createPostDto);
-        const newPost = await this.postsService.createPost(createPostDto, user);
+    // @UsePipes(ValidationPipe)
+    async createPost(
+        @AuthUser() user: User,
+        @Body() createPostDto: CreatePostDto,
+        @UploadedFile() file: Express.Multer.File
+    ): Promise<PostEntity> {
+        const newPost = await this.postsService.createPost(createPostDto, user, file);
         return newPost;
     }
 }
