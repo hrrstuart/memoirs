@@ -5,6 +5,7 @@ import * as passport from 'passport';
 import { config } from 'dotenv';
 import { TypeormStore } from 'connect-typeorm'
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { S3, config as awsConfig } from 'aws-sdk';
 
 import { AppModule } from './app.module';
 import { SessionEntity } from './typeorm';
@@ -15,6 +16,13 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const sessionRepository = app.get(getRepositoryToken(SessionEntity), {
     strict: false
+  })
+
+  awsConfig.update({
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    }
   })
   app.use(session({
     secret: process.env.SESSION_SECRET,
