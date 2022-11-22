@@ -16,6 +16,13 @@ export class PostsService {
         return this.postRepository.find();
     }
 
+    async getPost(id: string) {
+        return {
+            data: await this.postRepository.findBy({ id }),
+            body: await this.uploadService.getPost(id)
+        }
+    }
+
     async createPost(createPost: CreatePostDto, owner: User, file: Express.Multer.File): Promise<Post> {    
         const newPost = this.postRepository.create({
             id: generateString(),

@@ -1,4 +1,4 @@
-import { Body, ClassSerializerInterceptor, Controller, Get, Post, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Get, Param, Post, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthenticatedGuard } from 'src/resources/auth/utils/LocalGuard';
 import { CreatePostDto } from 'src/resources/posts/dtos/CreatePost.dto';
@@ -13,6 +13,11 @@ export class PostsController {
     @Get('')
     getPosts() {
         return this.postsService.getPosts();
+    }
+
+    @Get('/id/:id')
+    async getPost(@Param('id') id: string) {
+        return this.postsService.getPost(id);
     }
 
     @UseGuards(AuthenticatedGuard)

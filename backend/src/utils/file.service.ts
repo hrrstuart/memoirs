@@ -29,4 +29,11 @@ export class FilesService {
             Key: 'posts/' + filename
         }).promise();
     }
+
+    async getFile(filename: string) {
+        return await this.s3.getObject({
+            Bucket: process.env.AWS_PUBLIC_BUCKET_KEY,
+            Key: 'posts/' + filename
+        }).promise();
+    }
 }

@@ -10,4 +10,12 @@ export class UploadService {
     async addPost(imageBuffer: Express.Multer.File, filename: string) {
         return this.filesService.uploadFile(imageBuffer, filename);
     }
+
+    async deletePost(filename: string) {
+        return this.filesService.deleteFile(filename);
+    }
+
+    async getPost(filename: string) {
+        return this.filesService.getFile(filename);
+    }
 }
