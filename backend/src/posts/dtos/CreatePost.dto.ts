@@ -1,10 +1,7 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsFile } from 'src/utils/isfile.validator';
 
 export class CreatePostDto {
-
-    @IsNotEmpty()
-    @IsString()
-    image_url: string;
 
     @IsNotEmpty()
     @IsString()
@@ -13,5 +10,8 @@ export class CreatePostDto {
     @IsString()
     @IsOptional()
     description: string;
+
+    @IsFile({ mime: ['image/jpg', 'image/jpeg', 'image/png'] })
+    file: Express.Multer.File;
 
 }
