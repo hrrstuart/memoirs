@@ -13,7 +13,7 @@ export class AlbumsService {
     }
 
     async getAlbumById(id: string): Promise<AlbumEntity> {
-        return this.albumRepository.findOne({ where: { id }, relations: ['owner'] });
+        return this.albumRepository.findOne({ where: { id }, relations: ['owner', 'posts'] });
     }
 
     async createAlbum(albumDto: CreateAlbumDto, user: User) {

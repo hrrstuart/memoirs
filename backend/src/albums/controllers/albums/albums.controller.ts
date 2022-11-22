@@ -17,6 +17,11 @@ export class AlbumsController {
         return albums;
     }
 
+    @Get('/id/:id')
+    getAlbumById(@Param('id') id: string) {
+        return this.albumsService.getAlbumById(id);
+    }
+
     @UseGuards(AuthenticatedGuard)
     @UseInterceptors(ClassSerializerInterceptor)
     @Post('create')
