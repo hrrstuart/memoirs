@@ -15,11 +15,11 @@ export class FilesService {
     constructor() {
     }
 
-    async uploadFile(imageBuffer: Express.Multer.File, filename: string): Promise<S3.ManagedUpload.SendData> {
+    async uploadFile(imageBuffer: Express.Multer.File, filepath: string): Promise<S3.ManagedUpload.SendData> {
         return await this.s3.upload({
             Bucket: process.env.AWS_PUBLIC_BUCKET_KEY,
             Body: imageBuffer.buffer,
-            Key: 'posts/' + filename
+            Key: filepath
         }).promise();
     }
 

@@ -30,7 +30,7 @@ export class PostsService {
             album: { id: createPost.albumId },
             ...createPost
         });
-        const res = await this.uploadService.addPost(file, newPost.id);
+        const res = await this.uploadService.uploadFile(file, `posts/${newPost.id}`);
     
         newPost.image_url = res.Location;
 

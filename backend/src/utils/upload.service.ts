@@ -7,8 +7,8 @@ export class UploadService {
         private readonly filesService: FilesService
     ) {}
 
-    async addPost(imageBuffer: Express.Multer.File, filename: string) {
-        return this.filesService.uploadFile(imageBuffer, filename);
+    async uploadFile(imageBuffer: Express.Multer.File, filepath: string) {
+        return this.filesService.uploadFile(imageBuffer, filepath);
     }
 
     async deletePost(filename: string) {
