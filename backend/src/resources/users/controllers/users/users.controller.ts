@@ -10,13 +10,18 @@ import {
     ClassSerializerInterceptor,
     UsePipes,
     UseGuards,
-    ValidationPipe
+    ValidationPipe,
+    UploadedFile
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 import { AuthenticatedGuard } from 'src/resources/auth/utils/LocalGuard';
 import { CreateUserDto } from 'src/resources/users/dtos/CreateUser.dto';
 import { UsersService } from 'src/resources/users/services/users/users.service';
 import { SerializedUser } from 'src/resources/users/types';
+import { User } from 'src/typeorm';
+import { AuthUser } from 'src/utils/decorators';
+import { UpdateResult } from 'typeorm';
 
 @Controller('users')
 export class UsersController {
@@ -43,6 +48,17 @@ export class UsersController {
     async createUser(@Body() createUserDto: CreateUserDto) {
         const newUser = await this.usersService.createUser(createUserDto);
         return new SerializedUser(newUser);
+    }
+
+    @UseGuards(AuthenticatedGuard)
+    @UseInterceptors(FileInterceptor('file'))
+    @Post('upload-avatar')
+    async createPost(
+        @AuthUser() user: User,
+        @UploadedFile() file: Express.Multer.File
+    ): Promise<UpdateResult> {
+        const newUser = await this.usersService.uploadProfilePicture(user.id, file);
+        return newUser;
     }
 
 }

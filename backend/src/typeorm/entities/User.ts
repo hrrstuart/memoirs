@@ -16,6 +16,9 @@ export class User extends BasicEntity {
     @Column({ nullable: false })
     password: string;
 
+    @Column()
+    avatar_url: string;
+
     @BeforeInsert()
     async hashPassword() {
         if (this.password) {
