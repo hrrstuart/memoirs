@@ -6,6 +6,7 @@ import { IsAdminGuard } from 'src/resources/albums/utils/IsAdminGuard';
 import { AuthenticatedGuard } from 'src/resources/auth/utils/LocalGuard';
 import { Album, User } from 'src/typeorm';
 import { AuthUser } from 'src/utils/decorators';
+import { GetAlbumDto } from '../../dtos/GetAlbum.dto';
 
 @Controller('albums')
 export class AlbumsController {
@@ -18,8 +19,11 @@ export class AlbumsController {
     }
 
     @Get('/id/:id')
-    getAlbumById(@Param('id') id: string) {
-        return this.albumsService.getAlbumById(id);
+    getAlbumById(
+        @Param('id') id: string,
+        @Body() getAlbumDto: GetAlbumDto
+    ) {
+        return this.albumsService.getAlbumById(id, getAlbumDto);
     }
 
     @UseGuards(AuthenticatedGuard)

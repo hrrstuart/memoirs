@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateAlbumDto } from 'src/resources/albums/dtos/CreateAlbum.dto';
 import { Album as AlbumEntity, User } from 'src/typeorm';
 import { Repository } from 'typeorm';
+import { GetAlbumDto } from '../../dtos/GetAlbum.dto';
 
 @Injectable()
 export class AlbumsService {
@@ -12,8 +13,10 @@ export class AlbumsService {
         return this.albumRepository.find();
     }
 
-    async getAlbumById(id: string): Promise<AlbumEntity> {
-        return this.albumRepository.findOne({ where: { id }, relations: ['owner', 'posts'] });
+    async getAlbumById(id: string, getAlbumDto?: GetAlbumDto): Promise<AlbumEntity> {
+        const toGet = [];
+        getAlbumDto.images && toGet.push('posts');
+        return this.albumRepository.findOne({ where: { id }, relations: toGet });
     }
 
     async createAlbum(albumDto: CreateAlbumDto, user: User) {
