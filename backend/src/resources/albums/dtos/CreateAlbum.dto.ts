@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { AlbumPrivacy } from 'src/typeorm/entities/Album';
 
 export class CreateAlbumDto {
 
@@ -9,5 +10,9 @@ export class CreateAlbumDto {
     @IsString()
     @IsOptional()
     description: string;
+
+    @IsEnum(AlbumPrivacy)
+    @IsOptional()
+    privacy: AlbumPrivacy;
 
 }
