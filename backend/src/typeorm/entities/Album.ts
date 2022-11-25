@@ -4,10 +4,10 @@ import { Post } from "./Post";
 import { User } from "./User";
 
 export enum AlbumPrivacy {
-    MY_EYES_ONLY,
-    MEMBERS_ONLY,
-    FOLLOWERS_ONLY,
-    PUBLIC
+    MY_EYES_ONLY = "MY_EYES_ONLY",
+    MEMBERS_ONLY = "MEMBERS_ONLY",
+    FOLLOWERS_ONLY = "FOLLOWERS_ONLY",
+    PUBLIC = "PUBLIC"
 }
 
 @Entity()
