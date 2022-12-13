@@ -14,9 +14,10 @@ export class AlbumsService {
     }
 
     async getAlbumById(id: string, getAlbumDto?: GetAlbumDto): Promise<AlbumEntity> {
-        const toGet = [];
-        getAlbumDto.images && toGet.push('posts');
-        return this.albumRepository.findOne({ where: { id }, relations: toGet });
+        return this.albumRepository.findOne({
+            where: { id },
+            relations: Object.keys(getAlbumDto)
+        });
     }
 
     async createAlbum(albumDto: CreateAlbumDto, user: User) {
