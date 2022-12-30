@@ -3,7 +3,7 @@ import { BasicEntity } from "./BasicEntity";
 import { Post } from "./Post";
 import { User } from "./User";
 
-export enum AlbumPrivacy {
+export enum AlbumViewingPrivacy {
     MY_EYES_ONLY = "MY_EYES_ONLY",
     MEMBERS_ONLY = "MEMBERS_ONLY",
     FOLLOWERS_ONLY = "FOLLOWERS_ONLY",
@@ -18,10 +18,10 @@ export class Album extends BasicEntity {
 
     @Column({
         type: "enum",
-        enum: AlbumPrivacy,
-        default: AlbumPrivacy.MY_EYES_ONLY
+        enum: AlbumViewingPrivacy,
+        default: AlbumViewingPrivacy.MY_EYES_ONLY
     })
-    privacy: AlbumPrivacy;
+    viewingPrivacy: AlbumViewingPrivacy;
 
     @Column({ type: "varchar", length: 155, nullable: true })
     description: string;

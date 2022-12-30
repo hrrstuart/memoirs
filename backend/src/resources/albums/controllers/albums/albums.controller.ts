@@ -3,10 +3,11 @@ import { CreateAlbumDto } from 'src/resources/albums/dtos/CreateAlbum.dto';
 import { DeleteAlbumDto } from 'src/resources/albums/dtos/DeleteAlbum.dto';
 import { AlbumsService } from 'src/resources/albums/services/albums/albums.service';
 import { IsAdminGuard } from 'src/resources/albums/utils/IsAdminGuard';
-import { AuthenticatedGuard } from 'src/resources/auth/utils/LocalGuard';
+import { AuthenticatedGuard, LocalAuthGuard } from 'src/resources/auth/utils/LocalGuard';
 import { Album, User } from 'src/typeorm';
 import { AuthUser } from 'src/utils/decorators';
 import { GetAlbumDto } from '../../dtos/GetAlbum.dto';
+import { CanView } from '../../utils/CanView';
 
 @Controller('albums')
 export class AlbumsController {
@@ -18,6 +19,7 @@ export class AlbumsController {
         return albums;
     }
 
+    @UseGuards(LocalAuthGuard, CanView)
     @Get('/id/:id')
     getAlbumById(
         @Param('id') id: string,
