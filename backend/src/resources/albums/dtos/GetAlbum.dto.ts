@@ -3,6 +3,9 @@ import { IsBoolean } from 'class-validator';
 export class GetAlbumDto {
 
     @IsBoolean()
-    images: boolean = false;
+    images?: boolean = false;
+
+    @IsBoolean()
+    owner?: boolean = false;
 
 }
