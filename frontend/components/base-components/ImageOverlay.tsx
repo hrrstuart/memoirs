@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 
 function ImageOverlay(props: {
@@ -25,7 +26,7 @@ function ImageOverlay(props: {
   return (
     <div onClick={handleClick} className='relative group cursor-pointer'>
         <img className={`object-cover ${image}`} src={props.image} alt={props.alt} />
-        <div className={`absolute w-full h-full group-hover:bg-black/20 top-0 duration-75 ${parent}`}>
+        <div className={`absolute w-full h-full group-hover:bg-black/5 top-0 duration-75 ${parent}`}>
             { props.children }
         </div>
     </div>
