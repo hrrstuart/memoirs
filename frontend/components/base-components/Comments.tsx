@@ -25,12 +25,12 @@ function Comments() {
 
   const Comment = ({ comment }: { comment: IComment }) => {
     return (
-        <div className='flex flex-col space-y-3'>
+        <div className='flex flex-col space-y-2'>
             <div className='flex flex-row w-full'>
                 <span className='pr-2 break-words'><strong>{comment.owner}</strong> {comment.content}</span>
-                <button className='ml-auto mb-auto'>Like</button>
+                <button className='ml-auto mb'>Like</button>
             </div>
-            <div className='flex flex-row space-x-10 mx-auto text-gray-400 text-xs'>
+            <div className='flex flex-row space-x-5 float-left text-gray-400 text-xs'>
                 <div>{format(comment.createdAt)}</div>
                 <div>View replies ({(typeof (comment.reactions.replies) === 'number' && comment.reactions.replies).toLocaleString()})</div>
             </div>
@@ -39,9 +39,9 @@ function Comments() {
   }
 
   return (
-        <ul className='flex-grow space-y-10 overflow-y-scroll'>
-            { comments.map((c, i) => <li key={i}><Comment comment={c} /></li>) }
-        </ul>
+        <div className='custom-scrollbar max-h-full space-y-10 overflow-y-scroll pr-3'>
+            { comments.map((c, i) => <Comment key={i} comment={c} />) }
+        </div>
   )
 }
 
