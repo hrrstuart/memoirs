@@ -29,7 +29,7 @@ function Description(props: {
   return (
     <div className='flex flex-col space-y-5'>
         <div className='flex flex-col md:flex-row'>
-            <div className='p-1 w-52 mx-auto bg-gradient-to-tr from-red-700 to-yellow-400 rounded-full'>
+            <div className='w-52 mx-auto rounded-full'>
               <img className='h-52 w-52 object-cover rounded-full' src={props.thumbnail} alt="Something" />
             </div>
             <div className='text-white max-w-[60%] pl-5 mx-auto md:mx-0'>
