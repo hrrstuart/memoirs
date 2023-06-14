@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* For webkit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 5px; /* Adjust the width as needed */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background-color: transparent; /* Set the scrollbar track background color to transparent */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent; /* Set the background color */
+    border-radius: 5px; /* Make the scrollbar track round */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; /* Set the color of the scrollbar thumb */
+    border-radius: 5px; /* Make the scrollbar thumb round */
+  }
