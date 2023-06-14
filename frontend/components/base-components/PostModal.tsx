@@ -19,7 +19,7 @@ function PostModal(props: {
                 <div className="mx-auto h-full flex items-center justify-center">
                   <img src={props.post.image} alt="Heya" className="object-cover max-h-full" />
                 </div>
-                <div className="text-white w-[30%] border-l p-5">
+                <div className="text-white w-full xl:w-[30%] xl:border-t-0 xl:border-l p-5 h-full flex flex-col">
                   <div className='pb-5'>
                     <ProfileTag
                       name={props.post.owner}
@@ -27,12 +27,14 @@ function PostModal(props: {
                       image="https://media.gettyimages.com/photos/picture-taken-07-october-2004-shows-google-founders-sergey-brin-and-picture-id76737519?s=2048x2048"
                     />
                   </div>
-                  <div className='flex flex-col'>
+                  <div className='flex flex-col flex-grow'>
                     <span className='pb-5'><strong>{props.post.owner}</strong> {props.post.caption}</span>
                     <SectionSplit title="Comments" />
                     <div className='space-y-5'>
-                      <textarea className='resize-none bg-transparent border-b focus:border-b-2 w-full py-1 outline-none max-h-36' placeholder="Enter a comment" />
-                      <Comments />
+                      <input placeholder='Enter a comment' className='bg-gray-800 w-full text-gray-100 p-2 focus:outline-none rounded-md' />
+                      <div className='h-[34rem]'>
+                        <Comments />
+                      </div>  
                     </div>
                   </div>
                 </div>
