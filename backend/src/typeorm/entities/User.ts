@@ -16,7 +16,7 @@ export class User extends BasicEntity {
     @Column({ nullable: false })
     password: string;
 
-    @Column()
+    @Column({ default: null })
     avatar_url: string;
 
     @BeforeInsert()
