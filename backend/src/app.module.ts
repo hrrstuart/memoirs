@@ -18,7 +18,7 @@ config({ path: join(process.cwd(), 'src/.env') })
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      database: 'atorus_redo',
+      database: 'atorus',
       port: 3306,
       username: 'root',
       password: process.env.MYSQL_PASSWORD,
