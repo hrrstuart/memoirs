@@ -1,11 +1,11 @@
 import { Entity, Column, BeforeInsert, OneToMany } from "typeorm";
 import * as bcrypt from "bcrypt";
-import { BasicEntity } from "./BasicEntity";
+import { Base } from "./BasicEntity";
 import { Album } from "./Album";
 import { Post } from "./Post";
 
 @Entity()
-export class User extends BasicEntity {
+export class User extends Base {
 
     @Column({ nullable: false, unique: true })
     username: string;

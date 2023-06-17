@@ -2,11 +2,11 @@ import { Column, Entity, ManyToOne } from 'typeorm';
 
 // Entities
 import { Album } from './Album';
-import { BasicEntity } from './BasicEntity';
+import { Base } from './BasicEntity';
 import { User } from './User';
 
 @Entity()
-export class Post extends BasicEntity {
+export class Post extends Base {
 
   @Column({ nullable: true })
   description: string;

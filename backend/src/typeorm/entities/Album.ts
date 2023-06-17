@@ -1,5 +1,5 @@
 import { Entity, Column, ManyToOne, OneToMany } from "typeorm";
-import { BasicEntity } from "./BasicEntity";
+import { Base } from "./BasicEntity";
 import { Post } from "./Post";
 import { User } from "./User";
 
@@ -11,7 +11,7 @@ export enum AlbumViewingPrivacy {
 }
 
 @Entity()
-export class Album extends BasicEntity {
+export class Album extends Base {
 
     @Column({ type: "varchar", length: 15 })
     title: string;
