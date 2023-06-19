@@ -14,8 +14,9 @@ import {
     UploadedFile
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { CanView } from 'src/resources/albums/utils/CanView';
 
-import { AuthenticatedGuard } from 'src/resources/auth/utils/LocalGuard';
+import { AuthenticatedGuard, LocalAuthGuard } from 'src/resources/auth/utils/LocalGuard';
 import { CreateUserDto } from 'src/resources/users/dtos/CreateUser.dto';
 import { UsersService } from 'src/resources/users/services/users/users.service';
 import { SerializedUser } from 'src/resources/users/types';
@@ -53,12 +54,21 @@ export class UsersController {
     @UseGuards(AuthenticatedGuard)
     @UseInterceptors(FileInterceptor('file'))
     @Post('upload-avatar')
-    async createPost(
+    async uploadAvatar(
         @AuthUser() user: User,
         @UploadedFile() file: Express.Multer.File
     ): Promise<UpdateResult> {
         const newUser = await this.usersService.uploadProfilePicture(user.id, file);
         return newUser;
+    }
+
+    @UseGuards(LocalAuthGuard, CanView)
+    @Get('/:id/albums')
+    getOwnedAlbums(
+        @Param('id') id: string
+    ) {
+        console.log('yes')
+        return this.usersService.getOwnedAlbums(id);
     }
 
 }

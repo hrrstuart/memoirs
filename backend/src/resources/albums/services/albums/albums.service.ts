@@ -20,6 +20,16 @@ export class AlbumsService {
         });
     }
 
+    async getAlbumsByOwnerID(ownerID: string) {
+        return this.albumRepository.find({
+            where: {
+                owner: {
+                    id: ownerID
+                }
+            }
+        })
+    }
+
     async createAlbum(albumDto: CreateAlbumDto, user: User) {
         const album = this.albumRepository.create({
             owner: user,

@@ -6,12 +6,14 @@ import { User as UserEntity } from 'src/typeorm';
 import { CreateUserDto } from '../../dtos/CreateUser.dto';
 import { SerializedUser } from '../../types';
 import { UploadService } from 'src/utils/upload.service';
+import { AlbumsService } from 'src/resources/albums/services/albums/albums.service';
 
 @Injectable()
 export class UsersService {
     constructor(
         @InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>,
-        @Inject(UploadService) private readonly uploadService: UploadService
+        @Inject(UploadService) private readonly uploadService: UploadService,
+        @Inject(AlbumsService) private readonly albumsService: AlbumsService
     ) {}
 
     async getAllUsers() {
@@ -34,5 +36,9 @@ export class UsersService {
     createUser(userDto: CreateUserDto) {
         const user = this.userRepository.create(userDto);
         return this.userRepository.save(user);
+    }
+
+    getOwnedAlbums(id: string) {
+        return this.albumsService.getAlbumsByOwnerID(id);
     }
 }
